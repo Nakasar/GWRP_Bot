@@ -913,7 +913,7 @@ function randHelp(message) {
           value: "Effectue le jet de dé ou le calcul indiqué."
         },
         {
-          name: "`+rand <character name>: <compétence> <caractéristique> # commentaire",
+          name: "`+rand <character name>: 1d100+<compétence>+<caractéristique> # commentaire",
           value: "Effectue le jet de compétence pour le personnage indiqué (tel que sauvegardé par l'utilisateur)."
         }
       ]
