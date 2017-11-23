@@ -8,6 +8,7 @@
     "axios": "^0.17.1",
     "discord.js": "^11.2.1",
     "enmap": "^0.4.2",
-    "enmap-level": "^1.0.0"
+    "enmap-level": "^1.0.0",
+    "mathjs": "^3.17.0"
   }
 }

@@ -306,7 +306,7 @@ function commandGestion(message, args) {
         for (var raccourci of raccourcis) {
           fields.push({
             name: raccourci.short,
-            value: raccourci.character
+            value: "[" + raccourci.character + "]" + "(https://gw2rp-tools.ovh/pages/characters?id=" + raccourci.id + ")"
           });
         }
 
@@ -593,8 +593,48 @@ function commandGestion(message, args) {
 
         break;
       default:
-        if (rest) {
-          
+        if (rest.length == 0) {
+          var shorty = cmd;
+          var raccourcis = bot.userTable.get(message.author.id);
+          if (typeof raccourcis === undefined) {
+            raccourcis = [];
+          }
+
+          var found = {};
+          for(var raccourci of raccourcis) {
+            if (raccourci.short === shorty) {
+              found = raccourci;
+              break;
+            }
+          }
+
+          if (found.short === shorty) {
+            message.channel.send({ embed: {
+                title: "Trouvé !",
+                description: "Nous avons trouvé un raccourci correspondant à la recherche dans vos favoris.",
+                url: "https://gw2rp-tools.ovh/pages/characters",
+                color: 45000,
+                author: {
+                  name: "GESTION DES RACCOURCIS"
+                },
+                fields : [
+                  {
+                    name: found.short,
+                    value: "Personnage : [" + found.character + "](https://gw2rp-tools.ovh/pages/characters?id=" + found.id + ")"
+                  }
+                ]
+              }});
+          } else {
+            message.channel.send({ embed: {
+                title: "Oups :(",
+                description: "Nous n'avons trouvé aucun de vos raccourcis nommé *" + shorty + "*.\nAjoutez un raccourci en lançant l'utilitaire `+raccourcis utilitaire`",
+                url: "https://gw2rp-tools.ovh/pages/characters",
+                color: 45000,
+                author: {
+                  name: "GESTION DES RACCOURCIS"
+                }
+              }});
+          }
         } else {
           raccourcisHelp(message);
         }
@@ -694,25 +734,172 @@ function rumoursHelp(message) {
 /*
   JETS DE DES
 */
+const dice_regex = /([0-9]\d*d[0-9]\d*)/g;
+const stat_regex = /([a-zA-Z\u00C0-\u017F]{2,})/g;
+const calc_regex = /^([0-9\+\-\*\(\)\/]{1,})$/g;
+const par_regex = /(\([0-9\-\+\*\/]{0,}\))/g;
 function commandRand(message, args) {
   if (args.length > 0) {
     let [cmd, ...rest] = args;
     switch (cmd) {
       case "aide":
-        charactersRand(message);
+        randHelp(message);
         break;
       default:
         // +r 1d5 + 52 -20# test
         // +r Silvie Esquive Dextérité # Pitié !
+        if (cmd.endsWith(":")) {
+          // Load character data if shorty does exist
+          var askedShort = cmd.substring(0, cmd.length - 1);
+          var userShorts = bot.userTable.get(message.author.id);
+
+          if (typeof userShorts === undefined) {
+            userShorts = [];
+          }
+          var thisShort = "";
+          for (var short of userShorts) {
+            if (short.short === askedShort) {
+              thisShort = short;
+              break;
+            }
+          }
+
+          if(thisShort === "") {
+            message.channel.send({ embed: {
+              title: "Oups :(",
+              description: "Le raccourci **" + askedShort + "** n'existe pas.\nVous pouvez créer un raccourci via `+raccourcis utilitaire`.",
+              color: 45000,
+              author: {
+                name: "JET DE DES"
+              }
+            }});
+          } else {
+            var command = rest.join(" ");
+            var [p1, ...p2] = command.split("#");
+            var exp = p1;
+            var comment = p2.join(" ");
+
+            //localhost:3000/api/characters/5a133ce6a61971167cbdbdac/stats
+
+            // replace statistics with API.
+            var stats = exp.match(stat_regex);
+            axios({
+              method: 'get',
+              baseURL: config.baseApi,
+              url: '/characters/' + short.id + "/stats",
+              data: { stats: stats }
+            }).then(function(json) {
+              if (json.data.success) {
+                var parsed = exp;
+                var statsToReplace = json.data.stats;
+                var statsRolled = "";
+                for (var stat of statsToReplace) {
+                  parsed = parsed.replace(stat.name, stat.value);
+                  statsRolled += "- " + stat.name + " : " + stat.value + "\n";
+                  stats.splice(stats.indexOf(stat.name), 1);
+                }
+                for (var stat of stats) {
+                  statsRolled += "- " + stat + " : 0\n" ;
+                  parsed = parsed.replace(stat, 0);
+                }
+
+                // find dice rolls in expression
+                var rolled = parsed.replace(dice_regex, rollDice);
+
+                if (rolled.search(calc_regex) > -1) {
+                  try {
+                    var result = eval(rolled);
+                    message.channel.send({ embed: {
+                      title: comment,
+                      description: statsRolled + "\n`" + rolled + " = `**`" + result + "`**",
+                      color: 45000,
+                      author: {
+                        name: short.character
+                      }
+                    }});
+                  } catch (e) {
+                    message.channel.send({ embed: {
+                      title: "Oups :(",
+                      description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
+                      color: 45000,
+                      author: {
+                        name: "JET DE DES"
+                      }
+                    }});
+                  }
+                } else {
+                  message.channel.send({ embed: {
+                    title: "Oups :(",
+                    description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
+                    color: 45000,
+                    author: {
+                      name: "JET DE DES"
+                    }
+                  }});
+                }
+              }
+            }).catch(function(json) {
+              message.channel.send({ embed: {
+                title: "Oups :(",
+                description: "Nous ne parvenons pas à récupérer les statistiques de ce personnage, le problème vient certainement de notre côté.",
+                color: 45000,
+                author: {
+                  name: "JET DE DES"
+                }
+              }});
+            });
+          }
+        }
+        else {
+          // Generic dice roll
+          var command = cmd + rest.join(" ");
+          var [p1, ...p2] = command.split("#");
+          var exp = p1;
+          var comment = p2.join(" ");
+
+          // find dice rolls in expression
+          var rolled = exp.replace(dice_regex, rollDice);
+          if (rolled.search(calc_regex) > -1) {
+            try {
+              var result = eval(rolled);
+              message.channel.send({ embed: {
+                title: comment,
+                description: "`" + rolled + " = `**`" + result + "`**",
+                color: 45000,
+                author: {
+                  name: message.author.username
+                }
+              }});
+            } catch (e) {
+              message.channel.send({ embed: {
+                title: "Oups :(",
+                description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
+                color: 45000,
+                author: {
+                  name: "JET DE DES"
+                }
+              }});
+            }
+          } else {
+            message.channel.send({ embed: {
+              title: "Oups :(",
+              description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
+              color: 45000,
+              author: {
+                name: "JET DE DES"
+              }
+            }});
+          }
+        }
 
         break;
     }
   } else {
-    charactersRand(message);
+    randHelp(message);
   }
 }
 
-function charactersRand(message) {
+function randHelp(message) {
   message.channel.send({ embed: {
       title: "Aide",
       description: "Liste des commandes\n\n`+r` et `+rand` sont équivalents.",
@@ -726,9 +913,37 @@ function charactersRand(message) {
           value: "Effectue le jet de dé ou le calcul indiqué."
         },
         {
-          name: "`+rand <character name> <compétence> <caractéristique> # commentaire",
+          name: "`+rand <character name>: <compétence> <caractéristique> # commentaire",
           value: "Effectue le jet de compétence pour le personnage indiqué (tel que sauvegardé par l'utilisateur)."
         }
       ]
     }});
+}
+
+function rollDice(match, offset, string) {
+  var [amount, dice] = match.split("d");
+  var string = "";
+  if (amount == 0) {
+    string = "0";
+  } else {
+    if (amount > 1) {
+      string += "(";
+    }
+    if (dice == 0) {
+      string += "0"
+    } else {
+      string += Math.floor((Math.random() * dice) + 1);
+    }
+    for (var i = 1; i < amount; i++) {
+      if (dice == 0) {
+        string += "+0"
+      } else {
+        string += "+" + Math.floor((Math.random() * dice) + 1);
+      }
+    }
+    if (amount > 1) {
+      string += ")";
+    }
+  }
+  return string;
 }
