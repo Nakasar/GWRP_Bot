@@ -27,8 +27,9 @@ Si le bot semble cassé, vous pouvez essayer la commande `+ping`. Si elle marche
 +rand <raccourci>: 1d100+<caractéristique>+<compétence>-20 => lance un dé avec les statistiques du personnage (si elles existent).
 
 `+ini` => Affiche l'initiative de ce canal.
+`+ini tuer <surnom>` => Supprimer l'entrée indiquée de la table d'initiative.
 `+ini reset` => Réinitialise l'initiative.
-`+ini set <message>` =>
-`+ini auto <surnom> <raccourci>: <jet de dé>` =>
-`+ini auto <surnom> <jet de dé>` => 
-`+ini auto <raccourci>: <jet de dé>` =>
+`+ini set <message>` => Définit l'initiative manuellement.
+`+ini auto <surnom> <raccourci>: <jet de dé>` => Lance votre initiative avec raccourci et l'ajoute à la table du canal.
+`+ini auto <surnom> <jet de dé>` => Lance votre initiative et l'ajoute à la table du canal.
+`+ini auto <raccourci>: <jet de dé>` => Lance votre initiative directement avec le nom du personnage et l'ajoute à la table du canal.

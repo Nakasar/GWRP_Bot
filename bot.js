@@ -1387,11 +1387,72 @@ function commandInitiative(message, args) {
       case "aide":
         initiativeHelp(message);
         break;
+      case "tuer":
+        if (args.length > 0) {
+          var character = rest.join(" ");
+          var initData = bot.channelsTable.get(message.channel.id);
+          if (typeof initData === "undefined") {
+            message.channel.send({ embed: {
+              title: "Pas d'initiative.",
+              description: "Cette entrée n'existe pas dans l'initiative.\nAffichez l'initiative et les surnoms à l'intérieur avec `+ini`.",
+              color: 45000,
+              author: {
+                name: "INITIATIVE"
+              }
+            }});
+          } else {
+            if (typeof initData.array === "undefined" || initData.array.length == 0) {
+              message.channel.send({ embed: {
+                title: "Pas d'initiative.",
+                description: "Cette entrée n'existe pas dans l'initiative.\nAffichez l'initiative et les surnoms à l'intérieur avec `+ini`.",
+                color: 45000,
+                author: {
+                  name: "INITIATIVE"
+                }
+              }});
+            } else {
+              var found = -1;
+              for (var i in initData.array) {
+                if (initData.array[i].character === character) {
+                  found = i;
+                }
+              }
+
+              if (found > -1 ) {
+                initData.array.splice(found, 1);
+                bot.channelsTable.set(message.channel.id, initData);
+                sendInitiative(message);
+              } else {
+                message.channel.send({ embed: {
+                  title: "Pas d'initiative.",
+                  description: "Cette entrée n'existe pas dans l'initiative.\nAffichez l'initiative et les surnoms à l'intérieur avec `+ini`.",
+                  color: 45000,
+                  author: {
+                    name: "INITIATIVE"
+                  }
+                }});
+              }
+            }
+          }
+        } else {
+          message.channel.send({ embed: {
+            title: "Aide",
+            description: "Supprimer une entrée de l'initiative avec `+tuer <surnom`.",
+            color: 45000,
+            author: {
+              name: "INITIATIVE"
+            }
+          }});
+        }
+
+
+
+        break;
       case "reset":
         bot.channelsTable.set(message.channel.id, { string: "", array: [] });
         message.channel.send({ embed: {
             title: "Initiative réinitialisée.",
-            description: "Tirez votre initiativee avec `+ini auto 1d100+Dextérité` (par exemple), elle sera automatiquement ajoutée à la table.",
+            description: "Tirez votre initiativee avec `+ini auto <surnom> 1d100+Dextérité` (par exemple), elle sera automatiquement ajoutée à la table.",
             color: 45000,
             author: {
               name: "INITIATIVE"
@@ -1429,7 +1490,7 @@ function commandInitiative(message, args) {
         } else {
           message.channel.send({ embed: {
             title: "Utilitaire d'initiative.",
-            description: "Tirez votre initiativee avec `+ini auto 1d100+Dextérité` (par exemple), elle sera automatiquement ajoutée à la table.",
+            description: "Tirez votre initiativee avec `+ini auto <surnom> 1d100+Dextérité` (par exemple), elle sera automatiquement ajoutée à la table.",
             color: 45000,
             author: {
               name: "INITIATIVE"
@@ -1456,7 +1517,6 @@ function commandInitiative(message, args) {
               name: "INITIATIVE"
             }
           }});
-
         break;
       default:
         sendInitiative(message);
@@ -1479,6 +1539,10 @@ function initiativeHelp(message) {
         {
           name: "`+ini`",
           value: "Affiche l'initiative de ce canal."
+        },
+        {
+          name: "`+ini tuer <surnom>`",
+          value: "Supprimer l'entrée indiquée de la table d'initiative."
         },
         {
           name: "`+ini reset`",
