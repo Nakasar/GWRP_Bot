@@ -118,6 +118,10 @@ function commandHelp(message, args) {
         value: "Rumeurs"
       },
       {
+        name: "`+events aide`",
+        value: "Evènements"
+      },
+      {
         name: "`+rand aide`",
         value: "Jets de dés"
       },
