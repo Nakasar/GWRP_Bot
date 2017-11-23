@@ -1,4 +1,4 @@
-'user strict';
+'use strict';
 var Discord = require('discord.js'),
   https = require('https'),
   axios = require('axios'),
@@ -14,6 +14,8 @@ const userTableSource = new EnmapLevel({ name: "userTable" });
 bot.userTable = new Enmap({ provider: userTableSource });
 const usersTableSource = new EnmapLevel({ name: "usersTable" });
 bot.usersTable = new Enmap({ provider: usersTableSource });
+const channelsTableSource = new EnmapLevel({ name: "channelsTable" });
+bot.channelsTable = new Enmap({ provider: channelsTableSource });
 const configTableSource = new EnmapLevel({ name: "configTable" });
 bot.configTable = new Enmap({ provider: configTableSource });
 
@@ -89,6 +91,9 @@ bot.on('message', message => {
     case 'raccourcis':
       commandGestion(message, args);
       break;
+    case "ini":
+      commandInitiative(message, args);
+      break;
     default:
       break;
   }
@@ -128,6 +133,10 @@ function commandHelp(message, args) {
       {
         name: "`+raccourcis aide`",
         value: "Raccourcis pour les jets de dés."
+      },
+      {
+        name: "`+ini aide`",
+        value: "Gestion de l'initiative."
       }
     ]
     }});
@@ -871,10 +880,6 @@ function eventsHelp(message) {
 /*
   JETS DE DES
 */
-const dice_regex = /([0-9]\d*d[0-9]\d*)/g;
-const stat_regex = /([a-zA-Z\u00C0-\u017F]{2,})/g;
-const calc_regex = /^([0-9\+\-\*\(\)\/]{1,})$/g;
-const par_regex = /(\([0-9\-\+\*\/]{0,}\))/g;
 function commandRand(message, args) {
   if (args.length > 0) {
     let [cmd, ...rest] = args;
@@ -920,41 +925,52 @@ function commandRand(message, args) {
 
             // replace statistics with API.
             var stats = exp.match(stat_regex);
-            axios({
-              method: 'get',
-              baseURL: config.baseApi,
-              url: '/characters/' + short.id + "/stats",
-              data: { stats: stats }
-            }).then(function(json) {
-              if (json.data.success) {
-                var parsed = exp;
-                var statsToReplace = json.data.stats;
-                var statsRolled = "";
-                for (var stat of statsToReplace) {
-                  parsed = parsed.replace(stat.name, stat.value);
-                  statsRolled += "- " + stat.name + " : " + stat.value + "\n";
-                  stats.splice(stats.indexOf(stat.name), 1);
-                }
-                for (var stat of stats) {
-                  statsRolled += "- " + stat + " : 0\n" ;
-                  parsed = parsed.replace(stat, 0);
-                }
+            if (stats) {
+              axios({
+                method: 'get',
+                baseURL: config.baseApi,
+                url: '/characters/' + short.id + "/stats",
+                data: { stats: stats }
+              }).then(function(json) {
+                if (json.data.success) {
+                  var parsed = exp;
+                  var statsToReplace = json.data.stats;
+                  var statsRolled = "";
+                  for (var stat of statsToReplace) {
+                    parsed = parsed.replace(stat.name, stat.value);
+                    statsRolled += "- " + stat.name + " : " + stat.value + "\n";
+                    stats.splice(stats.indexOf(stat.name), 1);
+                  }
+                  for (var stat of stats) {
+                    statsRolled += "- " + stat + " : 0\n" ;
+                    parsed = parsed.replace(stat, 0);
+                  }
 
-                // find dice rolls in expression
-                var rolled = parsed.replace(dice_regex, rollDice);
+                  // find dice rolls in expression
+                  var rolled = parsed.replace(dice_regex, rollDice);
 
-                if (rolled.search(calc_regex) > -1) {
-                  try {
-                    var result = eval(rolled);
-                    message.channel.send({ embed: {
-                      title: comment,
-                      description: statsRolled + "\n`" + rolled + " = `**`" + result + "`**",
-                      color: 45000,
-                      author: {
-                        name: short.character
-                      }
-                    }});
-                  } catch (e) {
+                  if (rolled.search(calc_regex) > -1) {
+                    try {
+                      var result = eval(rolled);
+                      message.channel.send({ embed: {
+                        title: comment,
+                        description: statsRolled + "\n`" + rolled + " = `**`" + result + "`**",
+                        color: 45000,
+                        author: {
+                          name: short.character
+                        }
+                      }});
+                    } catch (e) {
+                      message.channel.send({ embed: {
+                        title: "Oups :(",
+                        description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
+                        color: 45000,
+                        author: {
+                          name: "JET DE DES"
+                        }
+                      }});
+                    }
+                  } else {
                     message.channel.send({ embed: {
                       title: "Oups :(",
                       description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
@@ -964,7 +980,35 @@ function commandRand(message, args) {
                       }
                     }});
                   }
-                } else {
+                }
+              }).catch(function(json) {
+                message.channel.send({ embed: {
+                  title: "Oups :(",
+                  description: "Nous ne parvenons pas à récupérer les statistiques de ce personnage, le problème vient certainement de notre côté.",
+                  color: 45000,
+                  author: {
+                    name: "JET DE DES"
+                  }
+                }});
+              });
+            } else {
+              var parsed = exp;
+
+              // find dice rolls in expression
+              var rolled = parsed.replace(dice_regex, rollDice);
+
+              if (rolled.search(calc_regex) > -1) {
+                try {
+                  var result = eval(rolled);
+                  message.channel.send({ embed: {
+                    title: comment,
+                    description:"`" + rolled + " = `**`" + result + "`**",
+                    color: 45000,
+                    author: {
+                      name: short.character
+                    }
+                  }});
+                } catch (e) {
                   message.channel.send({ embed: {
                     title: "Oups :(",
                     description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
@@ -974,17 +1018,18 @@ function commandRand(message, args) {
                     }
                   }});
                 }
+              } else {
+                message.channel.send({ embed: {
+                  title: "Oups :(",
+                  description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
+                  color: 45000,
+                  author: {
+                    name: "JET DE DES"
+                  }
+                }});
               }
-            }).catch(function(json) {
-              message.channel.send({ embed: {
-                title: "Oups :(",
-                description: "Nous ne parvenons pas à récupérer les statistiques de ce personnage, le problème vient certainement de notre côté.",
-                color: 45000,
-                author: {
-                  name: "JET DE DES"
-                }
-              }});
-            });
+            }
+
           }
         }
         else {
@@ -1057,6 +1102,217 @@ function randHelp(message) {
     }});
 }
 
+const dice_regex = /([0-9]\d*d[0-9]\d*)/g;
+const stat_regex = /([a-zA-Z\u00C0-\u017F]{2,})/g;
+const calc_regex = /^([0-9\+\-\*\(\)\/]{1,})$/g;
+const par_regex = /(\([0-9\-\+\*\/]{0,}\))/g;
+function rollExpression(message, args) {
+  return new Promise((resolve, reject) => {
+    var characterName = "";
+    var first = args[0];
+    var askedShort = "";
+    var rollCommand = [];
+    if (first.endsWith(":")) {
+      askedShort = first.substring(0, first.length - 1);
+      rollCommand = args.splice(1, args.length);
+    } else {
+      characterName = first;
+      if (args.length == 1) {
+        return reject({ code: "init-format", message: message });
+      }
+      var second = args[1];
+      if (second.endsWith(":")) {
+        askedShort = second.substring(0, second.length - 1);
+        rollCommand = args.splice(2, args.length);
+      } else {
+        rollCommand = args.splice(1, args.length);
+      }
+    }
+
+    if (rollCommand.length == 0) {
+      return reject({ code: "init-format", message: message });
+    }
+
+    if (askedShort.length > 0) {
+      // Load character data if shorty does exist
+      var userShorts = bot.userTable.get(message.author.id);
+
+      if (typeof userShorts === undefined) {
+        userShorts = [];
+      }
+      var thisShort = "";
+      for (var short of userShorts) {
+        if (short.short === askedShort) {
+          thisShort = short;
+          break;
+        }
+      }
+
+      if(thisShort === "") {
+        return reject({ code: "short", message: message, short: askedShort });
+      } else {
+        if (!(characterName.length > 0)) {
+          characterName = short.character;
+        }
+        var command = rollCommand.join(" ");
+        var [p1, ...p2] = command.split("#");
+        var exp = p1;
+        var comment = p2.join(" ");
+
+        //localhost:3000/api/characters/5a133ce6a61971167cbdbdac/stats
+
+        // replace statistics with API.
+        var stats = exp.match(stat_regex);
+        if (stats) {
+          axios({
+            method: 'get',
+            baseURL: config.baseApi,
+            url: '/characters/' + short.id + "/stats",
+            data: { stats: stats }
+          }).then(function(json) {
+            if (json.data.success) {
+              var parsed = exp;
+              var statsToReplace = json.data.stats;
+              var statsRolled = "";
+              for (var stat of statsToReplace) {
+                parsed = parsed.replace(stat.name, stat.value);
+                statsRolled += "- " + stat.name + " : " + stat.value + "\n";
+                stats.splice(stats.indexOf(stat.name), 1);
+              }
+              for (var stat of stats) {
+                statsRolled += "- " + stat + " : 0\n" ;
+                parsed = parsed.replace(stat, 0);
+              }
+
+              // find dice rolls in expression
+              var rolled = parsed.replace(dice_regex, rollDice);
+
+              if (rolled.search(calc_regex) > -1) {
+                try {
+                  var result = eval(rolled);
+                  return resolve({ character: characterName, init: result, expression: rolled });
+                } catch (e) {
+                  return reject({ code: "format", message: message });
+                }
+              } else {
+                return reject({ code: "format", message: message  });
+              }
+            }
+          }).catch(function(json) {
+            return reject({ code: "api", message: message  });
+          });
+        } else {
+          var parsed = exp;
+
+          // find dice rolls in expression
+          var rolled = parsed.replace(dice_regex, rollDice);
+
+          if (rolled.search(calc_regex) > -1) {
+            try {
+              var result = eval(rolled);
+              return resolve({ character: characterName, init: result, expression: rolled });
+            } catch (e) {
+              return reject({ code: "format", message: message  });
+            }
+          } else {
+            return reject({ code: "format", message: message  });
+          }
+        }
+
+      }
+    }
+    else {
+      // Generic dice roll
+      var command = rollCommand.join(" ");
+      var [p1, ...p2] = command.split("#");
+      var exp = p1;
+      var comment = p2.join(" ");
+
+      // find dice rolls in expression
+      var rolled = exp.replace(dice_regex, rollDice);
+      if (rolled.search(calc_regex) > -1) {
+        try {
+          var result = eval(rolled);
+          resolve({ character: characterName, init: result, expression: rolled });
+        } catch (e) {
+          return reject({ code: "format", message: message  });
+        }
+      } else {
+        return reject({ code: "format", message: message  });
+      }
+    }
+  });
+}
+
+function handleRollError(error) {
+  switch (error.code) {
+    case "format":
+      error.message.channel.send({ embed: {
+        title: "Oups :(",
+        description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
+        color: 45000,
+        author: {
+          name: "JET DE DES"
+        }
+      }});
+      break;
+    case "init-format":
+      error.message.channel.send({ embed: {
+        title: "Oups :(",
+        description: "Le jet de dés n'a pas été compris comme une commande d'initiative.",
+        color: 45000,
+        author: {
+          name: "JET DE DES"
+        },
+        fields: [
+          {
+            name: "Avec raccourci, en précisant le nom de l'entrée dans l'initiative.",
+            value: "`+ini auto <surnom> <raccourci>: 1d100+Dextérité`"
+          },
+          {
+            name: "Avec raccourci, en gardant le nom du personnage dans l'initiative.",
+            value: "`+ini auto <raccourci>: 1d100+Dextérité`"
+          },
+          {
+            name: "Sans raccourci, en précisant le nom de l'entrée dans l'initiative.",
+            value: "`+ini auto <surnom> 1d100+20`"
+          }
+        ]
+      }});
+      break;
+    case "short":
+      error.message.channel.send({ embed: {
+        title: "Oups :(",
+        description: "Le raccourci **" + error.short + "** n'existe pas.\nVous pouvez créer un raccourci via `+raccourcis utilitaire`.",
+        color: 45000,
+        author: {
+          name: "JET DE DES"
+        }
+      }});
+      break;
+    case "api":
+      error.message.channel.send({ embed: {
+        title: "Oups :(",
+        description: "Nous ne parvenons pas à récupérer les statistiques de ce personnage, le problème vient certainement de notre côté.",
+        color: 45000,
+        author: {
+          name: "JET DE DES"
+        }
+      }});
+      break;
+    default:
+      error.message.channel.send({ embed: {
+        title: "Oups :(",
+        description: "Le jet de dés ne peut pas être exécuté à cause d'une erreur inconnue.",
+        color: 45000,
+        author: {
+          name: "JET DE DES"
+        }
+      }});
+      break;
+  }
+}
+
 function rollDice(match, offset, string) {
   var [amount, dice] = match.split("d");
   var string = "";
@@ -1083,4 +1339,169 @@ function rollDice(match, offset, string) {
     }
   }
   return string;
+}
+
+/*
+  INITIATIVE
+*/
+function sendInitiative(message) {
+  // Display initiative in this channel.
+  var initData = bot.channelsTable.get(message.channel.id);
+  if (typeof initData === "undefined") {
+    message.channel.send({ embed: {
+        title: "Aucune initiative définie.",
+        description: "Définissez l'initiative pour ce canal avec `+ini <message>`",
+        color: 45000,
+        author: {
+          name: "INITIATIVE"
+        }
+      }});
+  } else {
+    initData.array.sort(function(a, b) { return b.init - a.init; });
+    var auto = "";
+    for (var init of initData.array) {
+      auto += init.init + " - " + init.character + "\n";
+    }
+
+    var fields = [];
+    if (initData.string.length > 0) {
+      fields.push({ name: "Manuelle :", value: initData.string });
+    }
+    if (auto.length > 0) {
+      fields.push({ name: "Automatique :", value: auto });
+    }
+
+    message.channel.send({ embed: {
+        description: "Tirez votre initiativee avec `+ini auto 1d100+Dextérité` (par exemple), elle sera automatiquement ajoutée à la table, ou définissez un ordre manuellement avec `+ini <ordre>`",
+        color: 45000,
+        author: {
+          name: "INITIATIVE"
+        },
+        fields: fields
+      }});
+  }
+}
+
+function commandInitiative(message, args) {
+  if (args.length > 0) {
+    let [cmd, ...rest] = args;
+    switch (cmd) {
+      case "aide":
+        initiativeHelp(message);
+        break;
+      case "reset":
+        bot.channelsTable.set(message.channel.id, { string: "", array: [] });
+        message.channel.send({ embed: {
+            title: "Initiative réinitialisée.",
+            description: "Tirez votre initiativee avec `+ini auto 1d100+Dextérité` (par exemple), elle sera automatiquement ajoutée à la table.",
+            color: 45000,
+            author: {
+              name: "INITIATIVE"
+            }
+          }});
+        break;
+      case "auto":
+        // Automated calculation of initiative (add this user initiative to the table).
+        if (rest.length > 0) {
+          // roll args.
+          rollExpression(message, rest).then(init => {
+            var initData = bot.channelsTable.get(message.channel.id);
+            if (typeof initData === "undefined") {
+              initData = { string: " ", array: [] };
+            }
+            var found = -1;
+            for (var i in initData.array) {
+              if (initData.array[i].character === init.character) {
+                found = i;
+                break;
+              }
+            }
+            if (found > -1) {
+              initData.array[i] = { character: init.character, init: init.init };
+            } else {
+              initData.array.push({ character: init.character, init: init.init });
+            }
+            bot.channelsTable.set(message.channel.id, initData);
+
+            message.reply("`" + init.expression + " = " + init.init + "`");
+
+            sendInitiative(message);
+          }).catch(handleRollError);
+
+        } else {
+          message.channel.send({ embed: {
+            title: "Utilitaire d'initiative.",
+            description: "Tirez votre initiativee avec `+ini auto 1d100+Dextérité` (par exemple), elle sera automatiquement ajoutée à la table.",
+            color: 45000,
+            author: {
+              name: "INITIATIVE"
+            }
+          }});
+        }
+        break;
+      case "set":
+        var init = rest.join(" ");
+        // Set initiative in this channel.
+        var initData = bot.channelsTable.get(message.channel.id);
+        if (typeof initData === "undefined") {
+          initData = { string: " ", array: [] };
+        }
+        initData.string = init;
+
+        bot.channelsTable.set(message.channel.id, initData);
+
+        message.channel.send({ embed: {
+            title: "Initiative modifiée.",
+            description: init,
+            color: 45000,
+            author: {
+              name: "INITIATIVE"
+            }
+          }});
+
+        break;
+      default:
+        sendInitiative(message);
+        break;
+    }
+  } else {
+    sendInitiative(message);
+  }
+}
+
+function initiativeHelp(message) {
+  message.channel.send({ embed: {
+      title: "Aide",
+      description: "Liste des commandes.",
+      color: 45000,
+      author: {
+        name: "INITIATIVE"
+      },
+      fields : [
+        {
+          name: "`+ini`",
+          value: "Affiche l'initiative de ce canal."
+        },
+        {
+          name: "`+ini reset`",
+          value: "Réinitialise l'initiative."
+        },
+        {
+          name: "`+ini set <message>`",
+          value: "Définit l'initiative manuellement."
+        },
+        {
+          name: "`+ini auto <surnom> <raccourci>: <jet de dé>`",
+          value: "Lance votre initiative avec raccourci et l'ajoute à la table du canal."
+        },
+        {
+          name: "`+ini auto <surnom> <jet de dé>`",
+          value: "Lance votre initiative et l'ajoute à la table du canal."
+        },
+        {
+          name: "`+ini auto <raccourci>: <jet de dé>`",
+          value: "Lance votre initiative directement avec le nom du personnage et l'ajoute à la table du canal."
+        }
+      ]
+    }});
 }

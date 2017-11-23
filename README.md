@@ -25,3 +25,10 @@ Si le bot semble cassé, vous pouvez essayer la commande `+ping`. Si elle marche
 
 +rand 1d100+50-5*(6+5/2) => lance un dé et effectue le calcul
 +rand <raccourci>: 1d100+<caractéristique>+<compétence>-20 => lance un dé avec les statistiques du personnage (si elles existent).
+
+`+ini` => Affiche l'initiative de ce canal.
+`+ini reset` => Réinitialise l'initiative.
+`+ini set <message>` =>
+`+ini auto <surnom> <raccourci>: <jet de dé>` =>
+`+ini auto <surnom> <jet de dé>` => 
+`+ini auto <raccourci>: <jet de dé>` =>
