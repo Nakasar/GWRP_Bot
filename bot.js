@@ -65,6 +65,9 @@ bot.on('message', message => {
     case 'aide':
       commandHelp(message, args);
       break;
+    case 'invite':
+      commandInvite(message, args);
+      break;
     case 'config':
       commandConfig(message, args);
       break;
@@ -121,6 +124,20 @@ function commandHelp(message, args) {
       }
     ]
     }});
+}
+
+/*
+  INVITE
+*/
+function commandInvite(message, args) {
+  message.channel.send({ embed: {
+      title: "Invitation",
+      description: "Vous pouvez m'inviter sur votre serveur en utilisant le [lien suivant](https://discordapp.com/oauth2/authorize?&client_id=382898758372950016&scope=bot&permissions=0)",
+      color: 45000,
+      author: {
+        name: "GW2RP-Bot"
+      }
+  }});
 }
 
 /*
