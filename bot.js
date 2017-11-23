@@ -77,6 +77,9 @@ bot.on('message', message => {
     case 'rumeurs':
       commandRumours(message, args);
       break;
+    case 'events':
+      commandEvents(message, args);
+      break;
     case 'r':
       commandRand(message, args);
       break;
@@ -743,6 +746,119 @@ function rumoursHelp(message) {
     {
       name: "`+rumeurs`",
       value: "Dernières rumeurs publiées"
+    }
+  ]
+  }});
+}
+
+function getDifficultyIcon(difficulty) {
+  //['peaceful', 'easy', 'normal', 'difficult', 'hardcore']
+  // :green_book:  :green_book: :orange_book: :closed_book: :notebook:
+  switch (difficulty) {
+    case "peaceful":
+      return ":green_book:";
+      break;
+    case "easy":
+      return ":green_book:";
+      break;
+    case "normal":
+      return ":orange_book:";
+      break;
+    case "difficult":
+      return ":closed_book:";
+      break;
+    case "hardcore":
+      return ":notebook:";
+      break;
+  }
+}
+
+function removeTextDecoration(text) {
+  var formatted = "";
+
+  formatted = text.replace(/\[color=(.+?)\](.+?)\[\/color\]/g, '$2');
+  formatted = formatted.replace(/\[b\](.+?)\[\/b\]/g, '$1');
+  formatted = formatted.replace(/\*\*(.+?)\*\*/g, '$1');
+  formatted = formatted.replace(/__(.+?)__/g, '$1');
+  formatted = formatted.replace(/\[i\](.+?)\[\/i\]/g, '$1');
+  formatted = formatted.replace(/\[u\](.+?)\[\/u\]/g, '$1');
+  formatted = formatted.replace(/_(.+?)_/g, '$1');
+
+  if (formatted.length > 200) {
+    formatted = formatted.substring(0, 200) + "...";
+  }
+
+  return formatted;
+}
+
+/*
+  RUMOURS
+*/
+function commandEvents(message, args) {
+  if (args.length > 0) {
+    let [cmd, ...rest] = args;
+    switch (cmd) {
+      case "aide":
+        eventsHelp(message);
+        break;
+      default:
+        eventsHelp(message);
+        break;
+    }
+  } else {
+    axios({
+      method: 'get',
+      baseURL: config.baseApi,
+      url: '/events',
+      params: { next: 5 }
+    }).then(function(json) {
+      if (json.data.success) {
+        var events = json.data.events
+        var fields = [];
+        console.log(events);
+        for (var event of events) {
+          var value = "";
+          value += "*" + removeTextDecoration(event.description) + "*";
+          value += "\n";
+          var date = new Date(event.end_date);
+          if (date) {
+            value += "\n" + date.toLocaleDateString().substr(0, 10);
+            if (date.getHours() > 0) {
+              value += " à " + date.toLocaleTimeString().substr(0, 5);
+            }
+          }
+          value += "\n[Voir sur la carte](https://gw2rp-tools.ovh/cartographe?id=" + event._id + "), par " + event.contact + ". [site web](" + event.site + ")";
+          fields.push({
+            name: getDifficultyIcon(event.difficulty) + " " + event.name,
+            value: value
+          });
+        }
+        message.channel.send({ embed: {
+          url: "https://gw2rp-tools.ovh/cartographe",
+          color: 45000,
+          author: {
+            name: "PROCHAINS EVENEMENTS"
+          },
+          fields: fields
+        }});
+      }
+    }).catch(function(json) {
+    });
+  }
+}
+
+function eventsHelp(message) {
+  message.channel.send({ embed: {
+    title: "Aide",
+    description: "Liste des commandes",
+    color: 45000,
+    author: {
+      name: "EVENEMENTS"
+    },
+    fields : [
+    {
+      name: "`+events`",
+      value: "Prochains évents à venir."
     }
   ]
   }});
