@@ -592,7 +592,6 @@ function commandGestion(message, args) {
                                 }});
                             }
                           }).catch(collected => {
-                            console.log(collected);
                             channel.send({ embed: {
                                 title: "Temps écoulé",
                                 description: "Vous avez dépassé le temps maximal de réponse, veuillez recommencer avec `+raccourcis utilitaire`.\n\nRappel : vous deviez entrer le numéro de la suggestion puis le raccourci à créer.",
@@ -828,7 +827,6 @@ function commandEvents(message, args) {
       if (json.data.success) {
         var events = json.data.events
         var fields = [];
-        console.log(events);
         for (var event of events) {
           var value = "";
           value += "*" + removeTextDecoration(event.description) + "*";
@@ -1407,7 +1405,7 @@ function commandInitiative(message, args) {
           rollExpression(message, rest).then(init => {
             var initData = bot.channelsTable.get(message.channel.id);
             if (typeof initData === "undefined") {
-              initData = { string: " ", array: [] };
+              initData = { string: "", array: [] };
             }
             var found = -1;
             for (var i in initData.array) {
@@ -1444,7 +1442,7 @@ function commandInitiative(message, args) {
         // Set initiative in this channel.
         var initData = bot.channelsTable.get(message.channel.id);
         if (typeof initData === "undefined") {
-          initData = { string: " ", array: [] };
+          initData = { string: "", array: [] };
         }
         initData.string = init;
 
