@@ -1,5 +1,6 @@
 auth.json
 config.js
+data/*
 
 # Logs
 logs
