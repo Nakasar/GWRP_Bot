@@ -916,7 +916,7 @@ function commandRand(message, args) {
           } else {
             var command = rest.join(" ");
             var [p1, ...p2] = command.split("#");
-            var exp = p1;
+            var exp = p1.trim();
             var comment = p2.join(" ");
 
             //localhost:3000/api/characters/5a133ce6a61971167cbdbdac/stats
@@ -1157,7 +1157,7 @@ function rollExpression(message, args) {
         }
         var command = rollCommand.join(" ");
         var [p1, ...p2] = command.split("#");
-        var exp = p1;
+        var exp = p1.trim();
         var comment = p2.join(" ");
 
         //localhost:3000/api/characters/5a133ce6a61971167cbdbdac/stats
