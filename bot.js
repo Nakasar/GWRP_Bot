@@ -23,7 +23,7 @@ var prefix = config.prefix;
 
 bot.on('ready', () => {
   console.log('Logged in as %s - %s\n', bot.user.username, bot.user.id);
-  bot.user.setGame(`Bot GW2RP`);
+  bot.user.setGame(`Bot GW2RP : +aide`);
 });
 
 bot.on('guildCreate', guild => {
@@ -1032,7 +1032,7 @@ function commandRand(message, args) {
         }
         else {
           // Generic dice roll
-          var command = cmd + rest.join(" ");
+          var command = cmd + " " + rest.join(" ");
           var [p1, ...p2] = command.split("#");
           var exp = p1;
           var comment = p2.join(" ");
@@ -1188,7 +1188,7 @@ function rollExpression(message, args) {
               if (rolled.search(calc_regex) > -1) {
                 try {
                   var result = eval(rolled);
-                  return resolve({ character: characterName, init: result, expression: rolled });
+                  return resolve({ character: characterName, result: result, rolled: rolled, expression: parsed });
                 } catch (e) {
                   return reject({ code: "format", message: message });
                 }
@@ -1208,7 +1208,7 @@ function rollExpression(message, args) {
           if (rolled.search(calc_regex) > -1) {
             try {
               var result = eval(rolled);
-              return resolve({ character: characterName, init: result, expression: rolled });
+              return resolve({ character: characterName, result: result, rolled: rolled, expression: parsed });
             } catch (e) {
               return reject({ code: "format", message: message  });
             }
@@ -1231,7 +1231,7 @@ function rollExpression(message, args) {
       if (rolled.search(calc_regex) > -1) {
         try {
           var result = eval(rolled);
-          resolve({ character: characterName, init: result, expression: rolled });
+          return resolve({ character: characterName, result: result, rolled: rolled, expression: parsed });
         } catch (e) {
           return reject({ code: "format", message: message  });
         }
@@ -1476,13 +1476,13 @@ function commandInitiative(message, args) {
               }
             }
             if (found > -1) {
-              initData.array[i] = { character: init.character, init: init.init };
+              initData.array[i] = { character: init.character, init: init.value, expression: init.expression };
             } else {
-              initData.array.push({ character: init.character, init: init.init });
+              initData.array.push({ character: init.character, init: init.value, expression: init.expression });
             }
             bot.channelsTable.set(message.channel.id, initData);
 
-            message.reply("`" + init.expression + " = " + init.init + "`");
+            message.reply("`" + init.expression + " = " + init.value + "`");
 
             sendInitiative(message);
           }).catch(handleRollError);
