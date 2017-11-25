@@ -1032,9 +1032,12 @@ function commandRand(message, args) {
         }
         else {
           // Generic dice roll
-          var command = cmd + " " + rest.join(" ");
+          var command = cmd;
+          if (rest.length > 0) {
+            command += " " + rest.join(" ");
+          }
           var [p1, ...p2] = command.split("#");
-          var exp = p1;
+          var exp = p1.trim();
           var comment = p2.join(" ");
 
           // find dice rolls in expression
@@ -1223,7 +1226,7 @@ function rollExpression(message, args) {
       // Generic dice roll
       var command = rollCommand.join(" ");
       var [p1, ...p2] = command.split("#");
-      var exp = p1;
+      var exp = p1.trim();
       var comment = p2.join(" ");
 
       // find dice rolls in expression
@@ -1476,13 +1479,13 @@ function commandInitiative(message, args) {
               }
             }
             if (found > -1) {
-              initData.array[i] = { character: init.character, init: init.value, expression: init.expression };
+              initData.array[i] = { character: init.character, init: init.result, expression: init.expression };
             } else {
-              initData.array.push({ character: init.character, init: init.value, expression: init.expression });
+              initData.array.push({ character: init.character, init: init.result, expression: init.expression });
             }
             bot.channelsTable.set(message.channel.id, initData);
 
-            message.reply("`" + init.expression + " = " + init.value + "`");
+            message.reply("`" + init.rolled + " = " + init.result + "`");
 
             sendInitiative(message);
           }).catch(handleRollError);
