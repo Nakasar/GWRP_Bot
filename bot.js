@@ -472,7 +472,7 @@ function commandGestion(message, args) {
               }
             }
           }).then(() => {
-              channel.awaitMessages(response => true, {
+              channel.awaitMessages(response => response.content.length > 0, {
                 max: 1,
                 time: 10000,
                 errors: ['time']
@@ -521,7 +521,7 @@ function commandGestion(message, args) {
                       userData["suggestions"] = suggestions;
                       bot.usersTable.set(message.author.id, userData);
 
-                      string += "\nAjoutez un raccourci en entrant `<numéro du personnage> <raccourci>`. *Annulez avec `annuler`.*";
+                      string += "\nAjoutez un raccourci en entrant `<numéro du personnage> <raccourci>`. Le raccourcis doit être un mot sans espace.\n*Annulez avec `annuler`.*";
                       channel.send({ embed: {
                           description: string,
                           url: "https://gw2rp-tools.ovh/pages/characters",
