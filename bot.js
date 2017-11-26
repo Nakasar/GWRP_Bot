@@ -414,9 +414,13 @@ function commandGestion(message, args) {
               }});
 
             } else {
+              var raccourcis = bot.userTable.get(message.author.id);
+              if (typeof raccourcis === "undefined") {
+                raccourcis = [];
+              }
 
               var fields = [];
-              for (var raccourci of bot.userTable.get(message.author.id)) {
+              for (var raccourci of raccourcis) {
                 fields.push({
                   name: raccourci.short,
                   value: raccourci.character
@@ -539,9 +543,17 @@ function commandGestion(message, args) {
                             if (content.split(" ").length == 2) {
                               let [index, short] = content.split(" ");
                               var fetchedUserData =  bot.usersTable.get(message.author.id);
+                              if (typeof fetchedUserData === "undefined") {
+                                fetchedUserData = {};
+                              }
+
                               var suggestion = fetchedUserData.suggestions[index];
-                              if(typeof suggestion !== "undefined" && typeof suggestion.id !== "undefined") {
+                              if (typeof suggestion !== "undefined" && typeof suggestion.id !== "undefined") {
                                 var raccourcis = bot.userTable.get(message.author.id);
+                                if (typeof raccourcis === "undefined") {
+                                  raccourcis = [];
+                                }
+
                                 var toModify = -1;
                                 for (var i in raccourcis) {
                                   if (raccourcis.short === short) {
