@@ -935,6 +935,7 @@ function commandRand(message, args) {
 
             // replace statistics with API.
             var stats = exp.match(stat_regex);
+
             if (stats) {
               axios({
                 method: 'get',
@@ -1116,7 +1117,7 @@ function randHelp(message) {
 }
 
 const dice_regex = /([0-9]\d*d[0-9]\d*)/g;
-const stat_regex = /([a-zA-Z\u00C0-\u017F]{2,})/g;
+const stat_regex = /([ ()\/a-zA-Z\u00C0-\u017F]{2,})/g;
 const calc_regex = /^([0-9\+\-\*\(\)\/]{1,})$/g;
 const par_regex = /(\([0-9\-\+\*\/]{0,}\))/g;
 function rollExpression(message, args) {
