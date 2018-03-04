@@ -1437,7 +1437,7 @@ function commandSkill(message, args) {
         var comment = p2.join(" ")
 
         var toroll
-        if (["+", "-"].includes(exp[0])) {
+        if (["+", "-"].includes(exp[0]) || exp.length == 0) {
           toroll = stats.value + exp
         } else {
           toroll = stats.value + '+' + exp
