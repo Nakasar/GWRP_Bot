@@ -1377,7 +1377,7 @@ function commandSkill(message, args) {
         skillHelp(message)
         break
       default:
-        var fullcommand = args.join("")
+        var fullcommand = args.join(" ")
         var [command, ...params] = fullcommand.split(cmd_split_regex)
 
         var stats = {}
@@ -1438,19 +1438,20 @@ function commandSkill(message, args) {
 
         var toroll
         if (["+", "-"].includes(exp[0]) || exp.length == 0) {
-          toroll = stats.value + exp
+          toroll = "1d100+" + stats.value + exp
         } else {
-          toroll = stats.value + '+' + exp
+          toroll = "1d100+" + stats.value + '+' + exp
         }
-        console.log(toroll)
-        var rolled = toroll.replace(dice_regex, rollDice);
+
+        toroll = toroll.replace(" ", "")
+        var rolled = toroll.replace(dice_regex, rollDice)
         if (rolled.search(calc_regex) > -1) {
 
           var result = eval(rolled)
           try {
             message.channel.send({ embed: {
                 title: `${comment} ${stats.type ? `(${stats.type})` : ""}`,
-                description: "`" + toroll + " => `**`" + result + "`**",
+                description: "`" + rolled + " => `**`" + result + "`**",
                 color: stats.color,
                 author: {
                   name: message.author.username
