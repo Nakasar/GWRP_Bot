@@ -83,10 +83,11 @@ bot.on('message', message => {
       commandEvents(message, args);
       break;
     case 'r':
-      commandRand(message, args);
-      break;
     case 'rand':
       commandRand(message, args);
+      break;
+    case 'c':
+      commandSkill(message, args);
       break;
     case 'raccourcis':
       commandGestion(message, args);
@@ -107,8 +108,8 @@ bot.login(config.token);
 function commandHelp(message, args) {
   message.channel.send({ embed: {
       title: "Aide",
-      description: "Liste des commandes",
-      url: "https://gw2rp-tools.ovh/pages/characters",
+      description: "Bot Discord créé par Nakasar.",
+      url: "https://github.com/Nakasar/GWRP_Bot",
       color: 45000,
       author: {
         name: "GW2RP-Bot"
@@ -129,6 +130,10 @@ function commandHelp(message, args) {
       {
         name: "`+rand aide`",
         value: "Jets de dés"
+      },
+      {
+        name: "`+c aide`",
+        value: "Jets de compétences"
       },
       {
         name: "`+raccourcis aide`",
@@ -889,6 +894,8 @@ function eventsHelp(message) {
 
 /*
   JETS DE DES
+  +r 1d100+15
+  +r S: 1d100+Detérité#Jet de dextérité
 */
 function commandRand(message, args) {
   if (args.length > 0) {
@@ -1353,6 +1360,142 @@ function rollDice(match, offset, string) {
     }
   }
   return string;
+}
+
+
+/*
+  JETS DE COMPETENCES
+  +c expert +12-20
+  +c S: Dextérité
+*/
+const cmd_split_regex = /([ +\-#])/g;
+function commandSkill(message, args) {
+  if (args.length > 0) {
+    let [cmd, ...rest] = args
+    switch (cmd) {
+      case "aide":
+        skillHelp(message)
+        break
+      default:
+        var fullcommand = args.join("")
+        var [command, ...params] = fullcommand.split(cmd_split_regex)
+
+        var stats = {}
+        switch (command) {
+          case "catastrophe":
+          case "cat":
+            stats.value = -10
+            stats.type = "Catastrophe"
+            stats.color = 6250335 // gris
+            break
+          case "novice":
+          case "n":
+            stats.value = 10
+            stats.type = "Novice"
+            stats.color = 32763 // bleu
+            break
+          case "initié":
+          case "i":
+            stats.value = 20
+            stats.type = "Initié"
+            stats.color = 1941765 // vert
+            break
+          case "vétéran":
+          case "v":
+            stats.value = 30
+            stats.type = "Vétéran"
+            stats.color = 15388223 // jaune
+            break
+          case "élité":
+          case "e":
+            stats.value = 40
+            stats.type = "Elité"
+            stats.color = 16755200 // orange
+            break
+          case "champion":
+          case "c":
+            stats.value = 50
+            stats.type = "Champion"
+            stats.color = 15359961 // rose
+            break
+          case "légende":
+          case "l":
+            stats.value = 60
+            stats.type = "Légende"
+            stats.color = 9440246 // violet
+            break
+          default:
+            stats.value = 0
+            stats.type = ""
+            stats.color = 16777215 // blanc
+            params = [command].concat(params)
+            break
+        }
+
+        var [p1, ...p2] = params.join("").split("#")
+        var exp = p1.trim()
+        var comment = p2.join(" ")
+
+        var toroll
+        if (["+", "-"].includes(exp[0])) {
+          toroll = stats.value + exp
+        } else {
+          toroll = stats.value + '+' + exp
+        }
+        console.log(toroll)
+        var rolled = toroll.replace(dice_regex, rollDice);
+        if (rolled.search(calc_regex) > -1) {
+
+          var result = eval(rolled)
+          try {
+            message.channel.send({ embed: {
+                title: `${comment} ${stats.type ? `(${stats.type})` : ""}`,
+                description: "`" + toroll + " => `**`" + result + "`**",
+                color: stats.color,
+                author: {
+                  name: message.author.username
+                }
+              }});
+          } catch (e) {
+            message.channel.send({ embed: {
+              title: "Oups :(",
+              description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
+              color: 45000,
+              author: {
+                name: "JET DE DES"
+              }
+            }});
+          }
+        } else {
+          message.channel.send({ embed: {
+            title: "Oups :(",
+            description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
+            color: 45000,
+            author: {
+              name: "JET DE DES"
+            }
+          }});
+        }
+        break
+    }
+  }
+}
+
+function skillHelp(message) {
+  message.channel.send({ embed: {
+      title: "Aide",
+      description: "Liste des commandes",
+      color: 45000,
+      author: {
+        name: "JETS DE COMPETENCE"
+      },
+      fields : [
+        {
+          name: "`+c <niveau> # commentaire",
+          value: "Effectue le jet avec une maîtrise `catastrophe` (cata), simple (laissez vide), `novice`, `initié`, `vétéran`, `élite`, `champion`, `légende`.\n\n(cat, , n, i, v, e, c, l)"
+        }
+      ]
+    }});
 }
 
 /*
