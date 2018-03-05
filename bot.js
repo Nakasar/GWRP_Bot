@@ -1370,7 +1370,36 @@ function rollDice(match, offset, string) {
 */
 const cmd_split_regex = /([ +\-#])/g;
 function commandSkill(message, args) {
-  if (args.length > 0) {
+  if (args.length == 0) {
+    var stats = {
+      value: 0,
+      type: "",
+      color: 16777215
+    }
+    var toroll = "1d100+0"
+    var rolled = toroll.replace(dice_regex, rollDice)
+    try {
+      var result = eval(rolled)
+      var comment = ""
+      message.channel.send({ embed: {
+          title: `${comment} ${stats.type ? `(${stats.type})` : ""}`,
+          description: "`" + rolled + " => `**`" + result + "`**",
+          color: stats.color,
+          author: {
+            name: message.author.username
+          }
+        }});
+    } catch (e) {
+      message.channel.send({ embed: {
+        title: "Oups :(",
+        description: "Le jet de dés ne peut pas être exécuté, êtes-vous certain de son format ?",
+        color: 45000,
+        author: {
+          name: "JET DE DES"
+        }
+      }});
+    }
+  } else if (args.length > 0) {
     let [cmd, ...rest] = args
     switch (cmd) {
       case "aide":
@@ -1378,8 +1407,8 @@ function commandSkill(message, args) {
         break
       default:
         var fullcommand = args.join(" ")
-        var [command, ...params] = fullcommand.split(cmd_split_regex)
 
+        var [command, ...params] = fullcommand.split(cmd_split_regex)
         var stats = {}
         switch (command) {
           case "catastrophe":
@@ -1446,9 +1475,8 @@ function commandSkill(message, args) {
         toroll = toroll.replace(" ", "")
         var rolled = toroll.replace(dice_regex, rollDice)
         if (rolled.search(calc_regex) > -1) {
-
-          var result = eval(rolled)
           try {
+            var result = eval(rolled)
             message.channel.send({ embed: {
                 title: `${comment} ${stats.type ? `(${stats.type})` : ""}`,
                 description: "`" + rolled + " => `**`" + result + "`**",
