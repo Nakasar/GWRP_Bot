@@ -855,7 +855,17 @@ function commandEvents(message, args) {
               value += " à " + date.toLocaleTimeString().substr(0, 5);
             }
           }
-          value += "\n[Voir sur la carte](https://gw2rp-tools.ovh/cartographe?id=" + event._id + "), par " + event.contact + ". [site web](" + event.site + ")";
+          var participants = 0
+          for (var participant of event.participants) {
+            if (participant.status === "yes") {
+              participants += 1
+            }
+          }
+          value += "\n" + participants + " Participants."
+          value += "\n[Voir sur la carte](https://gw2rp-tools.ovh/cartographe?id=" + event._id + "), par " + event.contact + ".";
+          if (event.site) {
+            value += " [site web](" + event.site + ")"
+          }
           fields.push({
             name: getDifficultyIcon(event.difficulty) + " " + event.name,
             value: value
