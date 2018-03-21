@@ -830,6 +830,30 @@ function commandEvents(message, args) {
       case "aide":
         eventsHelp(message);
         break;
+      case "participants":
+        axios({
+          method: 'get',
+          baseURL: config.baseApi,
+          url: '/events/search/participants',
+          data: {
+            search: rest.join(" ")
+          }
+        }).then(function(json) {
+          if (json.data.success) {
+            var participants = json.data.participants
+            var value = "";
+            for (var participant of participants) {
+              value += `${participant.nick_name}, `
+            }
+            message.channel.send({ embed: {
+              color: 45000,
+              title: "Participants",
+              description: value
+            }});
+          }
+        }).catch(function(json) {
+        });
+        break;
       default:
         eventsHelp(message);
         break;
@@ -897,6 +921,10 @@ function eventsHelp(message) {
     {
       name: "`+events`",
       value: "Prochains évents à venir."
+    },
+    {
+      name: "`+events participants <Nom Event>`",
+      value: "Affiche les participants à l'évènement indiqué s'il existe."
     }
   ]
   }});
