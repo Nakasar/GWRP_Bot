@@ -843,7 +843,9 @@ function commandEvents(message, args) {
             var participants = json.data.participants
             var value = "";
             for (var participant of participants) {
-              value += `${participant.nick_name}, `
+              if (participant.status === "yes") {
+                value += `${participant.user.nick_name}, `
+              }
             }
             message.channel.send({ embed: {
               color: 45000,
