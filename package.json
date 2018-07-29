@@ -1,14 +1,14 @@
 {
   "name": "gw2rp-tools-bot",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "A Discord bot for the GW2RP ToolBox",
-  "main": "bot.js",
+  "main": "src/index.js",
   "author": "Kevin Nakasar Thizy",
   "dependencies": {
     "axios": "^0.17.1",
-    "discord.js": "^11.2.1",
-    "enmap": "^0.4.2",
-    "enmap-level": "^1.0.0",
-    "mathjs": "^3.17.0"
+    "discord.js": "^11.2.1"
+  },
+  "scripts": {
+    "start": "node src/index.js"
   }
 }
