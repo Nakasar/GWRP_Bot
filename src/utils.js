@@ -5,6 +5,7 @@ function makeMessage(response, simple = false) {
 
     return {
         embed: {
+            title: response.title,
             color: response.color || 5441619,
             description: response.text,
             fields: response.fields || null

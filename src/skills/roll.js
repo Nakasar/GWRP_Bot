@@ -10,9 +10,6 @@ roll = (message, phrase) => {
     command = command.trim();
     commentary = commentary.join("#").trim();
 
-    console.log(command);
-    console.log(commentary)
-
     if (command.includes(":")) {
         // Tis is a roll for a character.
         return message.channel.send(makeMessage({ text: "Je ne peux pas encore lancer de dés pour des personnages." }));
@@ -29,6 +26,7 @@ roll = (message, phrase) => {
             const expression = first + " " + rest.join(" ");
             return evaluate(expression).then(({ expression, rolled, result, critFailure, critSuccess }) => {
                 return message.channel.send(makeMessage({
+                    title: message.author.username + ( commentary ? " # " + commentary : ""),
                     text: `\`${expression}\` → \`${rolled}\` = **\`${result}\`**
                             ${result.toString().split('').map(digit => digitToEmoji(digit)).join(" ")}    ${critFailure ? ":skull_crossbones: Echec Critique :skull_crossbones:" : ""}  ${critSuccess ? ":zap: Réussite Critique :zap:" : ""}`
                 }))
@@ -80,7 +78,6 @@ rollHelp = (message) => {
 
 evaluate = (expression) => {
     return Promise.resolve().then(() => {
-        console.log("'" + expression + "'");
 
         const regex = /^([+-]{0,1}\d{1,2}d\d{1,4}([+-]\d{1,4}){0,}){1,}$/;
         if (!regex.test(expression.trim())) {
@@ -124,7 +121,6 @@ evaluate = (expression) => {
         let result;
         try {
             result = eval(rolled);
-            console.log(result);
         } catch (e) {
             console.log(e);
             throw {
