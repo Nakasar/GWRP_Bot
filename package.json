@@ -9,6 +9,10 @@
     "discord.js": "^11.2.1"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "watch": "nodemon src/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
   }
 }
