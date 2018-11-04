@@ -28,6 +28,9 @@ class BotBaddon {
                 case "rumeurs":
                     return rumors.getRumours(message, phrase);
                 default:
+                    if (cmd.length <= 2) {
+                        return null; // Avoid answering to ++, +1, etc.
+                    }
                     return message.channel.send(
                         makeMessage({
                             text: `Désolé ${message.author.username}, je ne connais pas cette commande. Essaie \`!rp aide\` pour savoir ce que tu peux faire.`
