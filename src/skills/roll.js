@@ -99,7 +99,7 @@ evaluate = (expression) => {
                 for (let i = 0; i < amount; i++) {
                     const rolled = Math.round(Math.random() * (dice - 1)) + 1;
 
-                    if (rolled >= (dice - (dice / 20))) {
+                    if (rolled > (dice - (dice / 20))) {
                         critSuccess = true;
                     }
                     if (rolled <= (dice / 20)) {
