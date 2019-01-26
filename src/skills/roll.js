@@ -24,7 +24,7 @@ roll = (message, phrase) => {
             return message.channel.send(rollHelp(message));
         case "choose":
         case "choix":
-            const choices = rest.split('/').map(choice => choice.trim());
+            const choices = rest.join(' ').split('/').map(choice => choice.trim());
             const choice = choices[Math.floor(Math.random() * choices.length)];
             return message.channel.send(makeMessage({
                 title: message.author.username,
