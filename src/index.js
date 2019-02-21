@@ -65,4 +65,8 @@ bot.on('message', message => {
   }
 });
 
+bot.on('error', error => {
+  console.error(error);
+});
+
 bot.login(process.env.TOKEN || "");
