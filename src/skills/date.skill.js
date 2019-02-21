@@ -32,8 +32,8 @@ async function date(message, phrase) {
 
     await message.channel.send(makeMessage({
       thumbnail: THUMBNAILS.clock,
-      title: `Aujourd'hui, le ${DateUtils.mouvelianToFrenchString(mouvelianDate)}.`,
-      text: `Nous sommes le **${DateUtils.mouvelianToFrenchString(mouvelianDate)}** _(${DateUtils.dateToFrenchString(todayDate, { withYear: true })})_`,
+      title: `Aujourd'hui, le ${DateUtils.mouvelianToFrenchString(mouvelianDate, { withYear: true })}.`,
+      text: `Nous sommes le **${DateUtils.mouvelianToFrenchString(mouvelianDate, { withYear: true })}** _(${DateUtils.dateToFrenchString(todayDate, { withYear: true })})_`,
     }));
 
     return null;
