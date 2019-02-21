@@ -3,6 +3,7 @@ const { makeMessage } = require('./utils');
 const roll = require('./skills/roll');
 const rumors = require('./skills/rumors');
 const events = require('./skills/events');
+const DateSkill = require('./skills/date.skill');
 
 class BotBaddon {
     constructor({ } = {}) {
@@ -11,8 +12,7 @@ class BotBaddon {
 
     handleCommand(message, cmd, phrase) {
         return Promise.resolve().then(() => {
-            console.log(`handling command ${cmd} for user ${message.author.username} (${message.author.id}).`);
-            console.log(phrase);
+            console.log(`handling command '${cmd}' for user ${message.author.username} (${message.author.id}) on guild ${message.guild.name}: '${phrase}'`);
 
             switch (cmd) {
                 case "aide":
@@ -27,6 +27,8 @@ class BotBaddon {
                     return events.events(message, phrase);
                 case "rumeurs":
                     return rumors.getRumours(message, phrase);
+                case "date":
+                    return DateSkill.date(message, phrase);
                 default:
                     if (cmd.length <= 2) {
                         return null; // Avoid answering to ++, +1, etc.
@@ -47,6 +49,7 @@ class BotBaddon {
             \`roll (r)\` → Lancés de dés.
             \`events\` → Explorations des évènements.
             \`rumeurs\` → Explorations des rumeurs.
+            \`date\` → Conversion de date.
             `
         }));
     }

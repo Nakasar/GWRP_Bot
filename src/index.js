@@ -8,7 +8,7 @@ var hub = require('./hub')();
 
 bot.on('ready', () => {
   console.log('Logged in as %s - %s\n', bot.user.username, bot.user.id);
-  bot.user.setGame(`Bot GW2RP : !aide`);
+  bot.user.setGame(`Bot GW2RP : +aide`);
   console.log("I am connected to : " + bot.guilds.map(g => g.name).join(", "));
 });
 
@@ -53,8 +53,8 @@ bot.on('message', message => {
         return message.reply(mastery ? "A vos ordres Ô grand Nakasar, ça va faire mal." : "Voyez avec Nakasar pour me corrompre.");
       }
 
-      return message.reply("Je pourrais bientôt comprendre le langage naturel, mais pour l'instant, utilise `!rp` pour utiliser mes commandes.");
-    case "!rp":
+      return message.reply("Je pourrais bientôt comprendre le langage naturel, mais pour l'instant, utilise `+rp` pour utiliser mes commandes.");
+    case "+rp":
       return hub.handleCommand(message, args[0], args.slice(1).join(" "))
         .catch(err => {
           console.error(err);

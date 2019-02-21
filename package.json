@@ -5,15 +5,20 @@
   "main": "src/index.js",
   "author": "Kevin Nakasar Thizy",
   "dependencies": {
-    "axios": "^0.17.1",
-    "discord.js": "^11.2.1"
+    "axios": "^0.18.0",
+    "discord.js": "^11.4.2"
   },
   "scripts": {
     "start": "node src/index.js",
+    "test": "mocha -r test/test-init.js test/**/*.test.js",
     "watch": "nodemon src/index.js"
   },
   "devDependencies": {
-    "nodemon": "^1.18.3"
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^6.0.0",
+    "nodemon": "^1.18.3",
+    "sinon": "^7.2.4"
   },
   "license": "MIT"
 }
