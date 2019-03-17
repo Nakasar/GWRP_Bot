@@ -171,6 +171,24 @@ describe('Skill date', () => {
           await expect(message.channel.send.lastArg.embed.description).to.include(DateUtils.dateToFrenchString(gregorianDate));
           await expect(message.channel.send.lastArg.embed.description).to.include(DateUtils.mouvelianToFrenchString(mouvelianDate));
         });
+
+        it('should return converted date', async () => {
+          const message = {
+            channel: {
+              send: sinon.fake()
+            }
+          };
+
+          const dateString = '01/03';
+          const gregorianDate = DateUtils.frenchToDate(dateString);
+          const mouvelianDate = DateUtils.gregorianToMouvelian(gregorianDate);
+
+          await expect(Skill.date(message, dateString + ' -> mouv')).to.eventually.be.null;
+          sinon.assert.calledOnce(message.channel.send);
+          await expect(message.channel.send.lastArg).to.be.an('object').that.has.property('embed').that.is.an('object').that.has.property('description');
+          await expect(message.channel.send.lastArg.embed.description).to.include(DateUtils.dateToFrenchString(gregorianDate));
+          await expect(message.channel.send.lastArg.embed.description).to.include(DateUtils.mouvelianToFrenchString(mouvelianDate));
+        });
       });
 
       context('with week day', () => {

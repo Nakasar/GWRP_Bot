@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7cbe5fe-4830-43c9-bca3-dd1446511835" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/skills/date.skill.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/skills/date.skill.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/date.utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/date.utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/skills/date.skill.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/skills/date.skill.test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,11 +17,92 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/skills/date.skill.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-677">
-              <caret line="35" column="118" lean-forward="true" selection-start-line="35" selection-start-column="118" selection-end-line="35" selection-end-column="118" />
+            <state relative-caret-position="656">
+              <caret line="51" column="28" lean-forward="true" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/skills/date.skill.test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="97">
+              <caret line="120" column="55" lean-forward="true" selection-start-line="120" selection-start-column="55" selection-end-line="120" selection-end-column="55" />
+              <folding>
+                <element signature="e#336#808#0" />
+                <element signature="e#397#800#0" />
+                <element signature="e#423#498#0" />
+                <element signature="e#444#488#0" />
+                <element signature="e#842#1681#0" />
+                <element signature="e#896#1673#0" />
+                <element signature="e#922#997#0" />
+                <element signature="e#943#987#0" />
+                <element signature="e#1717#2634#0" />
+                <element signature="e#1772#2626#0" />
+                <element signature="e#1798#1873#0" />
+                <element signature="e#1819#1863#0" />
+                <element signature="e#2710#5540#0" />
+                <element signature="e#2767#3650#0" />
+                <element signature="e#2795#2878#0" />
+                <element signature="e#2818#2866#0" />
+                <element signature="e#3709#4593#0" />
+                <element signature="e#3737#3820#0" />
+                <element signature="e#3760#3808#0" />
+                <element signature="e#4652#5530#0" />
+                <element signature="e#4680#4763#0" />
+                <element signature="e#4703#4751#0" />
+                <element signature="e#5665#5748#0" />
+                <element signature="e#5688#5736#0" />
+                <element signature="e#6574#7453#0" />
+                <element signature="e#6602#6685#0" />
+                <element signature="e#6625#6673#0" />
+                <element signature="e#7512#8384#0" />
+                <element signature="e#7540#7623#0" />
+                <element signature="e#7563#7611#0" />
+                <element signature="e#8479#8562#0" />
+                <element signature="e#8502#8550#0" />
+                <element signature="e#8435#10308#0" />
+                <element signature="e#8492#9366#0" />
+                <element signature="e#8520#8603#0" />
+                <element signature="e#8543#8591#0" />
+                <element signature="e#9425#10298#0" />
+                <element signature="e#9453#9536#0" />
+                <element signature="e#9476#9524#0" />
+                <element signature="e#10346#11270#0" />
+                <element signature="e#10411#11260#0" />
+                <element signature="e#10439#10522#0" />
+                <element signature="e#10462#10510#0" />
+                <element signature="e#11315#13176#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/utils/date.utils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="73" column="4" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
+              <folding>
+                <element signature="n#!!doc;n#dateToFrenchString#0" />
+                <element signature="n#!!block;n#dateToFrenchString#0" />
+                <element signature="n#!!doc;n#frenchToMouvelian#0" />
+                <element signature="n#!!block;n#frenchToMouvelian#0" />
+                <element signature="n#!!doc;n#frenchToDate#0" />
+                <element signature="n#!!doc;n#getFrenchDay#0" />
+                <element signature="n#!!block;n#getFrenchDay#0" />
+                <element signature="n#!!doc;n#getFrenchMonth#0" />
+                <element signature="n#!!block;n#getFrenchMonth#0" />
+                <element signature="n#!!doc;n#gregorianToMouvelian#0" />
+                <element signature="n#!!block;n#gregorianToMouvelian#0" />
+                <element signature="n#!!doc;n#mouvelianToFrenchString#0" />
+                <element signature="n#!!block;n#mouvelianToFrenchString#0" />
+                <element signature="n#!!doc;n#mouvelianToGregorian#0" />
+                <element signature="n#!!block;n#mouvelianToGregorian#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -27,7 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hub.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
+            <state relative-caret-position="1173">
               <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="22" />
             </state>
           </provider>
@@ -75,13 +158,13 @@
         <option value="$PROJECT_DIR$/test/test-init.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/skills/date.js" />
-        <option value="$PROJECT_DIR$/src/utils/date.utils.js" />
         <option value="$PROJECT_DIR$/src/utils/color.utils.js" />
-        <option value="$PROJECT_DIR$/test/skills/date.skill.test.js" />
         <option value="$PROJECT_DIR$/src/utils.js" />
         <option value="$PROJECT_DIR$/src/hub.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/skills/date.skill.js" />
+        <option value="$PROJECT_DIR$/test/skills/date.skill.test.js" />
+        <option value="$PROJECT_DIR$/src/utils/date.utils.js" />
       </list>
     </option>
   </component>
@@ -94,7 +177,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -105,12 +187,19 @@
             <path>
               <item name="GWRP_Bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="GWRP_Bot" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWRP_Bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWRP_Bot" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="skills" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -134,7 +223,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.watch">
+  <component name="RunManager" selected="Mocha.Skill date.!date command.on -&gt; mouv.without year">
     <configuration name="watch" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -162,23 +251,6 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Skill date.!date command.on -&gt; mouv" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <ui>bdd</ui>
-      <extra-mocha-options>-r test/test-init.js</extra-mocha-options>
-      <test-kind>SUITE</test-kind>
-      <test-file>$PROJECT_DIR$/test/skills/date.skill.test.js</test-file>
-      <test-names>
-        <name value="Skill date" />
-        <name value="!date command" />
-        <name value="on -&gt; mouv" />
-      </test-names>
-      <method v="2" />
-    </configuration>
     <configuration name="Skill date.!date command.on -&gt; mouv.with invalid date.should return error" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -195,6 +267,24 @@
         <name value="on -&gt; mouv" />
         <name value="with invalid date" />
         <name value="should return error" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Skill date.!date command.on -&gt; mouv.without year" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options>-r test/test-init.js</extra-mocha-options>
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/test/skills/date.skill.test.js</test-file>
+      <test-names>
+        <name value="Skill date" />
+        <name value="!date command" />
+        <name value="on -&gt; mouv" />
+        <name value="without year" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -249,19 +339,19 @@
     </configuration>
     <list>
       <item itemvalue="Mocha.Skill date" />
-      <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv" />
-      <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv.without year.should return converted date" />
       <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv.with invalid date.should return error" />
+      <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv.without year.should return converted date" />
       <item itemvalue="Mocha.Skill date.!date command.on invalid command.should display error message" />
       <item itemvalue="npm.watch" />
+      <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv.without year" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv.without year" />
         <item itemvalue="Mocha.Skill date.!date command.on invalid command.should display error message" />
         <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv.with invalid date.should return error" />
         <item itemvalue="Mocha.Skill date" />
         <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv.without year.should return converted date" />
-        <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv" />
       </list>
     </recent_temporary>
   </component>
@@ -277,26 +367,12 @@
       <updated>1548511804842</updated>
       <workItem from="1548511807480" duration="2608000" />
       <workItem from="1550732381906" duration="393000" />
-      <workItem from="1550733666973" duration="14760000" />
+      <workItem from="1550733666973" duration="15427000" />
+      <workItem from="1552811673343" duration="373000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Skill_date_!date_command_on_-__mouv_without_year_should_return_converted_date - 2019.02.21 at 14h 53m 42s.xml">
-      <configuration name="Skill date.!date command.on -&gt; mouv.without year.should return converted date" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Skill_date - 2019.02.21 at 14h 55m 25s.xml">
-      <configuration name="Skill date" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Skill_date - 2019.02.21 at 14h 56m 11s.xml">
-      <configuration name="Skill date" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Skill_date - 2019.02.21 at 14h 56m 21s.xml">
-      <configuration name="Skill date" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Skill_date_!date_command_on_-__mouv_with_invalid_date_should_return_error - 2019.02.21 at 14h 57m 01s.xml">
-      <configuration name="Skill date.!date command.on -&gt; mouv.with invalid date.should return error" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
     <history-entry file="Skill_date_!date_command_on_-__mouv_with_invalid_date_should_return_error - 2019.02.21 at 14h 57m 23s.xml">
       <configuration name="Skill date.!date command.on -&gt; mouv.with invalid date.should return error" configurationId="mocha-javascript-test-runner" />
     </history-entry>
@@ -312,9 +388,24 @@
     <history-entry file="Skill_date_!date_command_on_invalid_command_should_display_error_message - 2019.02.21 at 15h 12m 30s.xml">
       <configuration name="Skill date.!date command.on invalid command.should display error message" configurationId="mocha-javascript-test-runner" />
     </history-entry>
+    <history-entry file="Skill_date_!date_command_on_-__mouv_without_year - 2019.03.17 at 09h 35m 20s.xml">
+      <configuration name="Skill date.!date command.on -&gt; mouv.without year" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Skill_date_!date_command_on_-__mouv_without_year - 2019.03.17 at 09h 36m 02s.xml">
+      <configuration name="Skill date.!date command.on -&gt; mouv.without year" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Skill_date_!date_command_on_-__mouv_without_year - 2019.03.17 at 09h 36m 38s.xml">
+      <configuration name="Skill date.!date command.on -&gt; mouv.without year" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Skill_date_!date_command_on_-__mouv_without_year - 2019.03.17 at 09h 40m 05s.xml">
+      <configuration name="Skill date.!date command.on -&gt; mouv.without year" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Skill_date_!date_command_on_-__mouv_without_year - 2019.03.17 at 09h 40m 37s.xml">
+      <configuration name="Skill date.!date command.on -&gt; mouv.without year" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17761000" />
+    <option name="totallyTimeSpent" value="18801000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -335,7 +426,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.28630707" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28630707" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -343,7 +434,7 @@
       <window_info anchor="bottom" id="Docker" order="7" weight="0.32987553" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32987553" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32987553" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -370,51 +461,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/date.utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
-          <folding>
-            <element signature="n#!!doc;n#dateToFrenchString#0" />
-            <element signature="n#!!block;n#dateToFrenchString#0" />
-            <element signature="e#677#735#0" />
-            <element signature="e#826#875#0" />
-            <element signature="n#!!doc;n#frenchToMouvelian#0" />
-            <element signature="n#!!block;n#frenchToMouvelian#0" />
-            <element signature="e#1239#1284#0" />
-            <element signature="n#!!doc;n#frenchToDate#0" />
-            <element signature="n#!!block;n#frenchToDate#0" />
-            <element signature="e#1606#1892#0" />
-            <element signature="e#1726#1773#0" />
-            <element signature="e#1898#2242#0" />
-            <element signature="e#1947#1994#0" />
-            <element signature="e#2149#2196#0" />
-            <element signature="n#!!doc;n#getFrenchDay#0" />
-            <element signature="n#!!block;n#getFrenchDay#0" />
-            <element signature="n#!!doc;n#getFrenchMonth#0" />
-            <element signature="n#!!block;n#getFrenchMonth#0" />
-            <element signature="n#!!doc;n#gregorianToMouvelian#0" />
-            <element signature="n#!!block;n#gregorianToMouvelian#0" />
-            <element signature="e#2577#2636#0" />
-            <element signature="e#2752#2816#0" />
-            <element signature="e#2846#2926#0" />
-            <element signature="e#2956#3037#0" />
-            <element signature="e#3043#3124#0" />
-            <element signature="n#!!doc;n#mouvelianToFrenchString#0" />
-            <element signature="n#!!block;n#mouvelianToFrenchString#0" />
-            <element signature="n#!!doc;n#mouvelianToGregorian#0" />
-            <element signature="n#!!block;n#mouvelianToGregorian#0" />
-            <element signature="e#3592#3895#0" />
-            <element signature="e#3614#3657#0" />
-            <element signature="e#3662#3710#0" />
-            <element signature="e#3715#3773#0" />
-            <element signature="e#3778#3836#0" />
-            <element signature="e#3841#3891#0" />
-            <element signature="e#3960#4097#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/color.utils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -433,68 +479,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4">
           <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/skills/date.skill.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10">
-          <caret line="267" column="14" selection-start-line="267" selection-start-column="14" selection-end-line="267" selection-end-column="14" />
-          <folding>
-            <element signature="e#336#808#0" />
-            <element signature="e#397#800#0" />
-            <element signature="e#423#498#0" />
-            <element signature="e#444#488#0" />
-            <element signature="e#842#1681#0" />
-            <element signature="e#896#1673#0" />
-            <element signature="e#922#997#0" />
-            <element signature="e#943#987#0" />
-            <element signature="e#1717#2634#0" />
-            <element signature="e#1772#2626#0" />
-            <element signature="e#1798#1873#0" />
-            <element signature="e#1819#1863#0" />
-            <element signature="e#2710#5540#0" />
-            <element signature="e#2767#3650#0" />
-            <element signature="e#2795#2878#0" />
-            <element signature="e#2818#2866#0" />
-            <element signature="e#3709#4593#0" />
-            <element signature="e#3737#3820#0" />
-            <element signature="e#3760#3808#0" />
-            <element signature="e#4652#5530#0" />
-            <element signature="e#4680#4763#0" />
-            <element signature="e#4703#4751#0" />
-            <element signature="e#5580#8394#0" />
-            <element signature="e#5637#6515#0" />
-            <element signature="e#5665#5748#0" />
-            <element signature="e#5688#5736#0" />
-            <element signature="e#6574#7453#0" />
-            <element signature="e#6602#6685#0" />
-            <element signature="e#6625#6673#0" />
-            <element signature="e#7512#8384#0" />
-            <element signature="e#7540#7623#0" />
-            <element signature="e#7563#7611#0" />
-            <element signature="e#8435#10308#0" />
-            <element signature="e#8492#9366#0" />
-            <element signature="e#8520#8603#0" />
-            <element signature="e#8543#8591#0" />
-            <element signature="e#9425#10298#0" />
-            <element signature="e#9453#9536#0" />
-            <element signature="e#9476#9524#0" />
-            <element signature="e#10346#11270#0" />
-            <element signature="e#10411#11260#0" />
-            <element signature="e#10439#10522#0" />
-            <element signature="e#10462#10510#0" />
-            <element signature="e#11400#11483#0" />
-            <element signature="e#11423#11471#0" />
-            <element signature="e#11868#11951#0" />
-            <element signature="e#11891#11939#0" />
-            <element signature="e#12323#12406#0" />
-            <element signature="e#12346#12394#0" />
-            <element signature="e#12789#12872#0" />
-            <element signature="e#12812#12860#0" />
-            <element signature="e#13309#13392#0" />
-            <element signature="e#13332#13380#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -521,7 +505,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hub.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
+        <state relative-caret-position="1173">
           <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="22" />
         </state>
       </provider>
@@ -550,8 +534,85 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/skills/date.skill.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-677">
-          <caret line="35" column="118" lean-forward="true" selection-start-line="35" selection-start-column="118" selection-end-line="35" selection-end-column="118" />
+        <state relative-caret-position="656">
+          <caret line="51" column="28" lean-forward="true" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/skills/date.skill.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="120" column="55" lean-forward="true" selection-start-line="120" selection-start-column="55" selection-end-line="120" selection-end-column="55" />
+          <folding>
+            <element signature="e#336#808#0" />
+            <element signature="e#397#800#0" />
+            <element signature="e#423#498#0" />
+            <element signature="e#444#488#0" />
+            <element signature="e#842#1681#0" />
+            <element signature="e#896#1673#0" />
+            <element signature="e#922#997#0" />
+            <element signature="e#943#987#0" />
+            <element signature="e#1717#2634#0" />
+            <element signature="e#1772#2626#0" />
+            <element signature="e#1798#1873#0" />
+            <element signature="e#1819#1863#0" />
+            <element signature="e#2710#5540#0" />
+            <element signature="e#2767#3650#0" />
+            <element signature="e#2795#2878#0" />
+            <element signature="e#2818#2866#0" />
+            <element signature="e#3709#4593#0" />
+            <element signature="e#3737#3820#0" />
+            <element signature="e#3760#3808#0" />
+            <element signature="e#4652#5530#0" />
+            <element signature="e#4680#4763#0" />
+            <element signature="e#4703#4751#0" />
+            <element signature="e#5665#5748#0" />
+            <element signature="e#5688#5736#0" />
+            <element signature="e#6574#7453#0" />
+            <element signature="e#6602#6685#0" />
+            <element signature="e#6625#6673#0" />
+            <element signature="e#7512#8384#0" />
+            <element signature="e#7540#7623#0" />
+            <element signature="e#7563#7611#0" />
+            <element signature="e#8479#8562#0" />
+            <element signature="e#8502#8550#0" />
+            <element signature="e#8435#10308#0" />
+            <element signature="e#8492#9366#0" />
+            <element signature="e#8520#8603#0" />
+            <element signature="e#8543#8591#0" />
+            <element signature="e#9425#10298#0" />
+            <element signature="e#9453#9536#0" />
+            <element signature="e#9476#9524#0" />
+            <element signature="e#10346#11270#0" />
+            <element signature="e#10411#11260#0" />
+            <element signature="e#10439#10522#0" />
+            <element signature="e#10462#10510#0" />
+            <element signature="e#11315#13176#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/date.utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="73" column="4" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!doc;n#dateToFrenchString#0" />
+            <element signature="n#!!block;n#dateToFrenchString#0" />
+            <element signature="n#!!doc;n#frenchToMouvelian#0" />
+            <element signature="n#!!block;n#frenchToMouvelian#0" />
+            <element signature="n#!!doc;n#frenchToDate#0" />
+            <element signature="n#!!doc;n#getFrenchDay#0" />
+            <element signature="n#!!block;n#getFrenchDay#0" />
+            <element signature="n#!!doc;n#getFrenchMonth#0" />
+            <element signature="n#!!block;n#getFrenchMonth#0" />
+            <element signature="n#!!doc;n#gregorianToMouvelian#0" />
+            <element signature="n#!!block;n#gregorianToMouvelian#0" />
+            <element signature="n#!!doc;n#mouvelianToFrenchString#0" />
+            <element signature="n#!!block;n#mouvelianToFrenchString#0" />
+            <element signature="n#!!doc;n#mouvelianToGregorian#0" />
+            <element signature="n#!!block;n#mouvelianToGregorian#0" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -66,10 +66,12 @@ function frenchToDate(dateString) {
     if (Number.isNaN(day)) {
       throw new Error('Invalid date.');
     }
-    month = !Number.isNaN(+args[1]) ? +args[1] : FRENCH_MONTHS.map(m => m.toLowerCase()).indexOf(args[1].toLowerCase());
-    if (month < 0 || month > 12) {
+
+    month = !Number.isNaN(+args[1]) ? +args[1] - 1 : FRENCH_MONTHS.map(m => m.toLowerCase()).indexOf(args[1].toLowerCase());
+    if (month < 0 || month >= 12) {
       throw new Error('Invalid date.');
     }
+
     year = args[2] || date.getFullYear();
   }
 
