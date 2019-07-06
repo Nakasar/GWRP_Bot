@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f7cbe5fe-4830-43c9-bca3-dd1446511835" name="Default Changelist" comment="">
+    <list default="true" id="f7cbe5fe-4830-43c9-bca3-dd1446511835" name="Default Changelist" comment="➕(config) Add config package">
+      <change afterPath="$PROJECT_DIR$/config/custom-environment-variables.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/default.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/date.utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/date.utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/skills/date.skill.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/skills/date.skill.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,125 +19,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/skills/date.skill.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="656">
-              <caret line="51" column="28" lean-forward="true" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/skills/date.skill.test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="120" column="55" lean-forward="true" selection-start-line="120" selection-start-column="55" selection-end-line="120" selection-end-column="55" />
-              <folding>
-                <element signature="e#336#808#0" />
-                <element signature="e#397#800#0" />
-                <element signature="e#423#498#0" />
-                <element signature="e#444#488#0" />
-                <element signature="e#842#1681#0" />
-                <element signature="e#896#1673#0" />
-                <element signature="e#922#997#0" />
-                <element signature="e#943#987#0" />
-                <element signature="e#1717#2634#0" />
-                <element signature="e#1772#2626#0" />
-                <element signature="e#1798#1873#0" />
-                <element signature="e#1819#1863#0" />
-                <element signature="e#2710#5540#0" />
-                <element signature="e#2767#3650#0" />
-                <element signature="e#2795#2878#0" />
-                <element signature="e#2818#2866#0" />
-                <element signature="e#3709#4593#0" />
-                <element signature="e#3737#3820#0" />
-                <element signature="e#3760#3808#0" />
-                <element signature="e#4652#5530#0" />
-                <element signature="e#4680#4763#0" />
-                <element signature="e#4703#4751#0" />
-                <element signature="e#5665#5748#0" />
-                <element signature="e#5688#5736#0" />
-                <element signature="e#6574#7453#0" />
-                <element signature="e#6602#6685#0" />
-                <element signature="e#6625#6673#0" />
-                <element signature="e#7512#8384#0" />
-                <element signature="e#7540#7623#0" />
-                <element signature="e#7563#7611#0" />
-                <element signature="e#8479#8562#0" />
-                <element signature="e#8502#8550#0" />
-                <element signature="e#8435#10308#0" />
-                <element signature="e#8492#9366#0" />
-                <element signature="e#8520#8603#0" />
-                <element signature="e#8543#8591#0" />
-                <element signature="e#9425#10298#0" />
-                <element signature="e#9453#9536#0" />
-                <element signature="e#9476#9524#0" />
-                <element signature="e#10346#11270#0" />
-                <element signature="e#10411#11260#0" />
-                <element signature="e#10439#10522#0" />
-                <element signature="e#10462#10510#0" />
-                <element signature="e#11315#13176#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/utils/date.utils.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="73" column="4" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
-              <folding>
-                <element signature="n#!!doc;n#dateToFrenchString#0" />
-                <element signature="n#!!block;n#dateToFrenchString#0" />
-                <element signature="n#!!doc;n#frenchToMouvelian#0" />
-                <element signature="n#!!block;n#frenchToMouvelian#0" />
-                <element signature="n#!!doc;n#frenchToDate#0" />
-                <element signature="n#!!doc;n#getFrenchDay#0" />
-                <element signature="n#!!block;n#getFrenchDay#0" />
-                <element signature="n#!!doc;n#getFrenchMonth#0" />
-                <element signature="n#!!block;n#getFrenchMonth#0" />
-                <element signature="n#!!doc;n#gregorianToMouvelian#0" />
-                <element signature="n#!!block;n#gregorianToMouvelian#0" />
-                <element signature="n#!!doc;n#mouvelianToFrenchString#0" />
-                <element signature="n#!!block;n#mouvelianToFrenchString#0" />
-                <element signature="n#!!doc;n#mouvelianToGregorian#0" />
-                <element signature="n#!!block;n#mouvelianToGregorian#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hub.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="69" column="3" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
-              <folding>
-                <element signature="e#166#363#0" />
-                <element signature="e#398#459#0" />
-                <element signature="e#492#1983#0" />
-                <element signature="e#537#554#0" />
-                <element signature="e#626#702#0" />
-                <element signature="e#789#1099#0" />
-                <element signature="e#907#1093#0" />
-                <element signature="e#1156#1981#0" />
-                <element signature="e#1273#1644#0" />
-                <element signature="e#1356#1497#0" />
-                <element signature="e#1649#1951#0" />
-                <element signature="e#1757#1949#0" />
-                <element signature="e#1956#1977#0" />
-              </folding>
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="376">
+                <caret line="17" selection-start-line="17" selection-end-line="17" />
+                <folding>
+                  <element signature="e#398#415#0" />
+                  <element signature="e#848#870#0" />
+                </folding>
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -156,19 +51,24 @@
       <list>
         <option value="$PROJECT_DIR$/src/skills/roll.js" />
         <option value="$PROJECT_DIR$/test/test-init.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/skills/date.js" />
         <option value="$PROJECT_DIR$/src/utils/color.utils.js" />
         <option value="$PROJECT_DIR$/src/utils.js" />
         <option value="$PROJECT_DIR$/src/hub.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/skills/date.skill.js" />
         <option value="$PROJECT_DIR$/test/skills/date.skill.test.js" />
         <option value="$PROJECT_DIR$/src/utils/date.utils.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/config/default.json" />
+        <option value="$PROJECT_DIR$/config/custom-environment-variables.json" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/config/local.json" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
@@ -187,13 +87,12 @@
             <path>
               <item name="GWRP_Bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="GWRP_Bot" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GWRP_Bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="GWRP_Bot" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="skills" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -203,6 +102,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
@@ -342,8 +242,8 @@
       <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv.with invalid date.should return error" />
       <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv.without year.should return converted date" />
       <item itemvalue="Mocha.Skill date.!date command.on invalid command.should display error message" />
-      <item itemvalue="npm.watch" />
       <item itemvalue="Mocha.Skill date.!date command.on -&gt; mouv.without year" />
+      <item itemvalue="npm.watch" />
     </list>
     <recent_temporary>
       <list>
@@ -368,8 +268,24 @@
       <workItem from="1548511807480" duration="2608000" />
       <workItem from="1550732381906" duration="393000" />
       <workItem from="1550733666973" duration="15427000" />
-      <workItem from="1552811673343" duration="373000" />
+      <workItem from="1552811673343" duration="389000" />
+      <workItem from="1562444445773" duration="1436000" />
     </task>
+    <task id="LOCAL-00001" summary="🔧(.gitignore) Update gitignore">
+      <created>1562444898267</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1562444898267</updated>
+    </task>
+    <task id="LOCAL-00002" summary="➕(config) Add config package">
+      <created>1562444989865</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1562444989865</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -405,7 +321,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18801000" />
+    <option name="totallyTimeSpent" value="20253000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -420,13 +336,13 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4985465" visible="true" weight="0.14044605" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985465" visible="true" weight="0.23688969" />
       <window_info id="Structure" order="1" sideWeight="0.50145346" side_tool="true" weight="0.14044605" />
       <window_info id="npm" order="2" sideWeight="0.50145346" side_tool="true" weight="0.14044605" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28630707" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.28630707" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -434,7 +350,7 @@
       <window_info anchor="bottom" id="Docker" order="7" weight="0.32987553" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32987553" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32987553" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -443,17 +359,12 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="(.gitignore) Update gitignore" />
+    <MESSAGE value="➕(config) Add config package" />
+    <option name="LAST_COMMIT_MESSAGE" value="➕(config) Add config package" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="115">
-            <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test-init.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -475,24 +386,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/skills/rumors.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/skills/events.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -503,46 +400,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hub.js">
+    <entry file="file://$PROJECT_DIR$/src/utils/date.utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="69" column="3" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
+        <state relative-caret-position="274">
+          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
           <folding>
-            <element signature="e#166#363#0" />
-            <element signature="e#398#459#0" />
-            <element signature="e#492#1983#0" />
-            <element signature="e#537#554#0" />
-            <element signature="e#626#702#0" />
-            <element signature="e#789#1099#0" />
-            <element signature="e#907#1093#0" />
-            <element signature="e#1156#1981#0" />
-            <element signature="e#1273#1644#0" />
-            <element signature="e#1356#1497#0" />
-            <element signature="e#1649#1951#0" />
-            <element signature="e#1757#1949#0" />
-            <element signature="e#1956#1977#0" />
+            <element signature="n#!!doc;n#dateToFrenchString#0" />
+            <element signature="n#!!block;n#dateToFrenchString#0" />
+            <element signature="n#!!doc;n#frenchToMouvelian#0" />
+            <element signature="n#!!block;n#frenchToMouvelian#0" />
+            <element signature="n#!!doc;n#frenchToDate#0" />
+            <element signature="n#!!block;n#frenchToDate#0" />
+            <element signature="n#!!doc;n#getFrenchDay#0" />
+            <element signature="n#!!block;n#getFrenchDay#0" />
+            <element signature="n#!!doc;n#getFrenchMonth#0" />
+            <element signature="n#!!block;n#getFrenchMonth#0" />
+            <element signature="n#!!doc;n#gregorianToMouvelian#0" />
+            <element signature="n#!!block;n#gregorianToMouvelian#0" />
+            <element signature="n#!!doc;n#mouvelianToFrenchString#0" />
+            <element signature="n#!!block;n#mouvelianToFrenchString#0" />
+            <element signature="n#!!doc;n#mouvelianToGregorian#0" />
+            <element signature="n#!!block;n#mouvelianToGregorian#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/skills/date.skill.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="51" column="28" lean-forward="true" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/skills/date.skill.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
-          <caret line="120" column="55" lean-forward="true" selection-start-line="120" selection-start-column="55" selection-end-line="120" selection-end-column="55" />
+          <caret line="120" column="55" selection-start-line="120" selection-start-column="55" selection-end-line="120" selection-end-column="55" />
           <folding>
             <element signature="e#336#808#0" />
             <element signature="e#397#800#0" />
@@ -574,45 +460,99 @@
             <element signature="e#7512#8384#0" />
             <element signature="e#7540#7623#0" />
             <element signature="e#7563#7611#0" />
-            <element signature="e#8479#8562#0" />
-            <element signature="e#8502#8550#0" />
-            <element signature="e#8435#10308#0" />
-            <element signature="e#8492#9366#0" />
-            <element signature="e#8520#8603#0" />
-            <element signature="e#8543#8591#0" />
-            <element signature="e#9425#10298#0" />
-            <element signature="e#9453#9536#0" />
-            <element signature="e#9476#9524#0" />
-            <element signature="e#10346#11270#0" />
-            <element signature="e#10411#11260#0" />
-            <element signature="e#10439#10522#0" />
-            <element signature="e#10462#10510#0" />
-            <element signature="e#11315#13176#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/date.utils.js">
+    <entry file="file://$PROJECT_DIR$/src/skills/date.skill.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="73" column="4" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
+        <state relative-caret-position="540">
+          <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/skills/rumors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/custom-environment-variables.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/default.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="12" lean-forward="true" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hub.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
           <folding>
-            <element signature="n#!!doc;n#dateToFrenchString#0" />
-            <element signature="n#!!block;n#dateToFrenchString#0" />
-            <element signature="n#!!doc;n#frenchToMouvelian#0" />
-            <element signature="n#!!block;n#frenchToMouvelian#0" />
-            <element signature="n#!!doc;n#frenchToDate#0" />
-            <element signature="n#!!doc;n#getFrenchDay#0" />
-            <element signature="n#!!block;n#getFrenchDay#0" />
-            <element signature="n#!!doc;n#getFrenchMonth#0" />
-            <element signature="n#!!block;n#getFrenchMonth#0" />
-            <element signature="n#!!doc;n#gregorianToMouvelian#0" />
-            <element signature="n#!!block;n#gregorianToMouvelian#0" />
-            <element signature="n#!!doc;n#mouvelianToFrenchString#0" />
-            <element signature="n#!!block;n#mouvelianToFrenchString#0" />
-            <element signature="n#!!doc;n#mouvelianToGregorian#0" />
-            <element signature="n#!!block;n#mouvelianToGregorian#0" />
+            <element signature="e#166#363#0" />
+            <element signature="e#398#459#0" />
+            <element signature="e#492#1983#0" />
+            <element signature="e#537#554#0" />
+            <element signature="e#626#702#0" />
+            <element signature="e#789#1099#0" />
+            <element signature="e#907#1093#0" />
+            <element signature="e#1156#1981#0" />
+            <element signature="e#1273#1644#0" />
+            <element signature="e#1356#1497#0" />
+            <element signature="e#1649#1951#0" />
+            <element signature="e#1757#1949#0" />
+            <element signature="e#1956#1977#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/local.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="376">
+            <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <folding>
+              <element signature="e#398#415#0" />
+              <element signature="e#848#870#0" />
+            </folding>
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

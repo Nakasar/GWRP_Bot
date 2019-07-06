@@ -1,10 +1,10 @@
-'use strict';
-var Discord = require('discord.js'),
-  axios = require('axios');
+const axios = require('axios');
+const Config = require('config');
+const Discord = require('discord.js');
 
-var bot = new Discord.Client();
+const hub = require('./hub')();
 
-var hub = require('./hub')();
+const bot = new Discord.Client();
 
 bot.on('ready', () => {
   console.log('Logged in as %s - %s\n', bot.user.username, bot.user.id);
@@ -48,7 +48,7 @@ bot.on('message', message => {
     case "bot":
     case "rp":
       // NLP mode.
-      
+
       if (args.join(" ").includes("méchant")) {
         return message.reply(mastery ? "A vos ordres Ô grand Nakasar, ça va faire mal." : "Voyez avec Nakasar pour me corrompre.");
       }
@@ -69,4 +69,4 @@ bot.on('error', error => {
   console.error(error);
 });
 
-bot.login(process.env.TOKEN || "");
+bot.login(Config.get('token'));
