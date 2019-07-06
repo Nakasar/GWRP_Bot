@@ -6,9 +6,11 @@ const hub = require('./hub')();
 
 const bot = new Discord.Client();
 
-bot.on('ready', () => {
+bot.on('ready', async () => {
   console.log('Logged in as %s - %s\n', bot.user.username, bot.user.id);
-  bot.user.setGame(`Bot GW2RP : +aide`);
+
+  await bot.user.setActivity(`Bot GW2RP : +aide`);
+
   console.log("I am connected to : " + bot.guilds.map(g => g.name).join(", "));
 });
 
