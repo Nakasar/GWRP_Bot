@@ -86,17 +86,24 @@ async function handleMessage(message, bot) {
 
           break;
         case 'choose':
-          await RollSkill.roll({
-            choices: analyzed.entities.choice.map(choice => choice.value),
-            type: RollSkill.RollTypes.CHOICE,
-          }, message);
+          if (analyzed.entities.choice && analyzed.entities.choice.length > 0) {
+            await RollSkill.roll({
+              choices: analyzed.entities.choice.map(choice => choice.value),
+              type: RollSkill.RollTypes.CHOICE,
+            }, message);
+          } else {
+            await message.channel.send(makeMessage({
+              text: `Je n'ai pas été capable de déterminer ce que je dois choisir, désolé :(`,
+            }));
+          }
+
           break;
         case 'roll-dice':
-          if (analyzed.entities.expression.length === 1) {
+          if (analyzed.entities.expression && analyzed.entities.expression.length === 1) {
             await RollSkill.roll({
               type: RollSkill.RollTypes.EXPRESSION,
               expression: analyzed.entities.expression[0].value,
-              comment: analyzed.entities.comment[0] && analyzed.entities.comment[0].value,
+              comment: (analyzed.entities.comment && analyzed.entities.comment[0]) ? analyzed.entities.comment[0].value : undefined,
             }, message);
           } else {
             await message.channel.send(makeMessage({
