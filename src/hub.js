@@ -1,6 +1,10 @@
 const Config = require('config');
 const sapcai = require('sapcai').default;
 
+const { makeMessage } = require('./utils/messages.utils');
+
+const RollSkill = require('./skills/roll/roll.skill');
+
 const sapcaiClient = new sapcai.request(Config.get('services.sap.token'));
 
 async function handleMessage(message, bot) {
@@ -18,9 +22,26 @@ async function handleMessage(message, bot) {
     }
 
     if (message.content.startsWith('+')) {
-      await message.reply('Mes commandes ne sont pas encore implémentées !');
+      let [prefix, ...args] = message.content.split(" ");
 
-      return;
+      switch (prefix.substring(1)) {
+        case "aide":
+        case "help":
+        case "?":
+          await message.channel.send(makeMessage({
+            text: `Hello ${message.author.username}. Voici la liste des commandes que je connais :
+            \`aide (?)\` → Affiche l'aide.
+            \`roll (r)\` → Lancés de dés.
+            `
+          }));
+          break;
+        case "roll":
+        case "r":
+          await RollSkill.roll({ command: args.join(' ') }, message, { parse: true });
+          break;
+        default:
+          break;
+      }
     } else if (message.content.match(/bot |bot'baddon|botbaddon/i) || message.content.includes(`<@${bot.user.id}>`)) {
       console.log(`[MessageId=${message.id}] Natural language handling.`);
 
