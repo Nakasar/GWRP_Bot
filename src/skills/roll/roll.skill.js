@@ -130,7 +130,7 @@ async function evaluate(expression) {
   return Promise.resolve().then(() => {
 
     const regex = /^([+-]{0,1}\d{1,2}d\d{1,4}([+-]\d{1,4}){0,}){1,}$/;
-    if (!regex.test(expression.trim())) {
+    if (!regex.test(expression.toLowerCase().trim())) {
       throw {
         message: "Invalid expression to evaluate.",
         id: "INVALID_EXPRESSION"
@@ -143,7 +143,7 @@ async function evaluate(expression) {
     let critFailure = false;
     let critSuccess = false;
     try {
-      rolled = expression.replace(diceRegex, (match) => {
+      rolled = expression.toLowerCase().replace(diceRegex, (match) => {
         const [amount, dice] = match.split("d");
         const res = [];
         for (let i = 0; i < amount; i++) {

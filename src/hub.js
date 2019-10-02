@@ -24,7 +24,7 @@ async function handleMessage(message, bot) {
     if (message.content.startsWith('+')) {
       let [prefix, ...args] = message.content.split(" ");
 
-      switch (prefix.substring(1)) {
+      switch (prefix.substring(1).toLowerCase()) {
         case "aide":
         case "help":
         case "?":
