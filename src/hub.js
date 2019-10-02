@@ -3,6 +3,7 @@ const sapcai = require('sapcai').default;
 
 const { makeMessage } = require('./utils/messages.utils');
 
+const DateSkill = require('./skills/date/date.skill');
 const RollSkill = require('./skills/roll/roll.skill');
 
 const sapcaiClient = new sapcai.request(Config.get('services.sap.token'));
@@ -34,11 +35,17 @@ async function handleMessage(message, bot) {
             \`roll (r)\` → Lancés de dés.
             `
           }));
+
           break;
         case "roll":
         case "r":
           await RollSkill.roll({ command: args.join(' ') }, message, { parse: true });
+
           break;
+        case 'date':
+          await DateSkill.date({
+            command: args.join(' '),
+          }, message, { parse: true });
         default:
           break;
       }
