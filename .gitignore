@@ -6,3 +6,4 @@ node_modules/
 
 # IDEA
 .idea/
+.vscode/

@@ -1,3 +1,8 @@
 {
-  "token": "BOT_TOKEN"
+  "token": "BOT_TOKEN",
+  "services": {
+    "sap": {
+      "token": "SERVICES__SAP__TOKEN"
+    }
+  }
 }

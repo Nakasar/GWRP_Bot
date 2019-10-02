@@ -1,3 +1,9 @@
 {
-  "token": "TO DEFINE"
+  "debug": false,
+  "token": "TO DEFINE",
+  "services": {
+    "sap": {
+      "token": "TO DEFINE"
+    }
+  }
 }

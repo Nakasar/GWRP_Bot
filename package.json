@@ -1,13 +1,14 @@
 {
-  "name": "gw2rp-tools-bot",
-  "version": "2.0.0",
-  "description": "A Discord bot for the GW2RP ToolBox",
+  "name": "@nakasar/botbaddon",
+  "version": "3.0.0",
+  "description": "A Discord bot for GuildWars 2 role players.",
   "main": "src/index.js",
-  "author": "Kevin Nakasar Thizy",
+  "author": "Kevin 'Nakasar' Thizy",
   "dependencies": {
-    "axios": "^0.18.0",
-    "config": "^3.1.0",
-    "discord.js": "^11.5.1"
+    "axios": "^0.19.0",
+    "config": "^3.2.2",
+    "discord.js": "^11.5.1",
+    "sapcai": "^4.1.0"
   },
   "scripts": {
     "start": "node src/index.js",
@@ -17,9 +18,10 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^6.0.0",
-    "nodemon": "^1.18.3",
-    "sinon": "^7.2.4"
+    "mocha": "^6.2.1",
+    "nodemon": "^1.19.3",
+    "sinon": "^7.5.0",
+    "sinon-chai": "^3.3.0"
   },
   "license": "MIT"
 }

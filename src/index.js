@@ -1,74 +1,47 @@
-const axios = require('axios');
 const Config = require('config');
 const Discord = require('discord.js');
-
-const hub = require('./hub')();
-
 const bot = new Discord.Client();
 
-bot.on('ready', async () => {
-  console.log('Logged in as %s - %s\n', bot.user.username, bot.user.id);
+const { handleMessage } = require('./hub');
 
-  await bot.user.setActivity(`Bot GW2RP : +aide`);
+bot.on('ready', () => {
+  console.group('Initialization');
 
-  console.log("I am connected to : " + bot.guilds.map(g => g.name).join(", "));
+  console.log(`Logged in as ${bot.user.tag}!`);
+
+  console.groupEnd();
 });
 
-bot.on('guildCreate', guild => {
-  console.log(`Joined ${guild.name} (id: ${guild.id}).`);
+bot.on('debug', info => {
+  if (Config.get('debug')) {
+    console.debug(info);
+  }
 });
 
-bot.on('message', message => {
-  // ignore bots
-  if (message.author.bot) {
-    return;
-  }
-
-  let mastery = false;
-  if (message.author.id == 186208105502081025) {
-    // This is Nakasar, activate fun mastery mode.
-    mastery = true;
-  }
-
-  let [prefix, ...args] = message.content.split(" ");
-
-  if (prefix.startsWith("+")) {
-    // Command mode.
-    return hub.handleCommand(message, prefix.substring(1), args.join(" "))
-      .catch(err => {
-        console.error(err);
-        message.channel.send("Oups, quelque chose de grave (impliquant certainement Kormir) s'est produit et je n'ai pas pu exécuter ta commande.");
-      });
-  }
-
-  // Split beetween direct message NLP and command.
-
-  switch (prefix) {
-    case "<@474600951676796948>":
-    case "bot'baddon":
-    case "botbaddon":
-    case "bot":
-    case "rp":
-      // NLP mode.
-
-      if (args.join(" ").includes("méchant")) {
-        return message.reply(mastery ? "A vos ordres Ô grand Nakasar, ça va faire mal." : "Voyez avec Nakasar pour me corrompre.");
-      }
-
-      return message.reply("Je pourrais bientôt comprendre le langage naturel, mais pour l'instant, utilise `+rp` pour utiliser mes commandes.");
-    case "+rp":
-      return hub.handleCommand(message, args[0], args.slice(1).join(" "))
-        .catch(err => {
-          console.error(err);
-          message.channel.send("Oups, quelque chose de grave (impliquant certainement Kormir) s'est produit et je n'ai pas pu exécuter ta commande.");
-        });
-    default:
-      break;
-  }
+bot.on('disconnect', event => {
+  console.error('Disconnected');
 });
 
 bot.on('error', error => {
   console.error(error);
 });
 
-bot.login(Config.get('token'));
+bot.on('warn', info => {
+  console.warn(info);
+});
+
+bot.on('message', async message => {
+  console.log(`[MessageId=${message.id}] Handling message.`);
+
+  await handleMessage(message, bot);
+
+  console.log(`[MessageId=${message.id}] Message handled.`);
+});
+
+bot.login(Config.get('token')).then(() => {
+  console.log('Login successfull.');
+}).catch(error => {
+  console.error(error);
+
+  process.exit(1);
+});
