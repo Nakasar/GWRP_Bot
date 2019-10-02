@@ -49,7 +49,7 @@ async function handleMessage(message, bot) {
         default:
           break;
       }
-    } else if (message.content.match(/bot |bot'baddon|botbaddon/i) || message.content.includes(`<@${bot.user.id}>`)) {
+    } else if (message.content.match(/bot[,. ]|bot'baddon|botbaddon/i) || message.content.includes(`<@${bot.user.id}>`)) {
       console.log(`[MessageId=${message.id}] Natural language handling.`);
 
       const analyzed = await sapcaiClient.analyseText(message.content);
@@ -110,6 +110,25 @@ async function handleMessage(message, bot) {
               text: `Je n'ai pas été capable de trouver une expression à évaluer, désolé :(`,
             }));
           }
+          break;
+        case 'insulte':
+          if (analyzed.entities.thing && analyzed.entities.thing.length === 1) {
+            if (analyzed.sentiment === 'vnegative') {
+              await message.channel.send(`${analyzed.entities.thing[0].value} toi même !`);
+            } else if (analyzed.sentiment === 'vpositive') {
+              await message.channel.send(`Oh merci <@${message.author.id}> !`);
+            }
+          } else {
+            if (analyzed.sentiment === 'vnegative') {
+              await message.channel.send('Toi même !');
+            } else if (analyzed.sentiment === 'vpositive') {
+              await message.channel.send(`Oh arrête <@${message.author.id}>, tu vas me faire rougir ! :blush:`);
+            }
+          }
+          break;
+        case 'need':
+          await message.channel.send('Mais bien sûr, voici !');
+
           break;
         default:
           await message.channel.send("Je ne peux pas encore répondre à cela, mais c'est prévu !");
