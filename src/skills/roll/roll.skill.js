@@ -20,8 +20,8 @@ const RollTypes = {
  * @param message
  * @returns {Promise<void>}
  */
-async function roll(params, message, options = {}) {
-  const _params = {};
+async function roll(params, message, options = { parse: false }) {
+  let _params = {};
 
   if (options.parse) {
     if (!params.command || params.command.length === 0) {
@@ -53,6 +53,8 @@ async function roll(params, message, options = {}) {
         _params.expression =  first + " " + rest.join(" ");
         _params.type = RollTypes.EXPRESSION;
     }
+  } else {
+    _params = { ...params };
   }
 
   switch (_params.type) {
@@ -64,6 +66,8 @@ async function roll(params, message, options = {}) {
           text: choice,
         }));
       } catch(error) {
+        console.log(error);
+
         await message.channel.send(makeMessage({ text: "Je n'ai pas pu choisir correctement une option, désolé :(" }));
       }
       break;
@@ -77,6 +81,8 @@ async function roll(params, message, options = {}) {
                             ${result.result.toString().split('').map(digit => digitToEmoji(digit)).join(" ")}    ${result.critFailure ? ":skull_crossbones: Echec Critique :skull_crossbones:" : ""}  ${result.critSuccess ? ":zap: Réussite Critique :zap:" : ""}`
         }))
       } catch(error) {
+        console.log(error);
+
         await message.channel.send(makeMessage({ text: "Je n'ai pas pu évaluer correctement cette expression, désolé :(" }));
       }
       break;
@@ -194,4 +200,5 @@ function digitToEmoji (digit) {
 
 module.exports = {
   roll,
+  RollTypes,
 };

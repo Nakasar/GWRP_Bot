@@ -78,6 +78,25 @@ async function handleMessage(message, bot) {
           }
 
           break;
+        case 'choose':
+          await RollSkill.roll({
+            choices: analyzed.entities.choice.map(choice => choice.value),
+            type: RollSkill.RollTypes.CHOICE,
+          }, message);
+          break;
+        case 'roll-dice':
+          if (analyzed.entities.expression.length === 1) {
+            await RollSkill.roll({
+              type: RollSkill.RollTypes.EXPRESSION,
+              expression: analyzed.entities.expression[0].value,
+              comment: analyzed.entities.comment[0] && analyzed.entities.comment[0].value,
+            }, message);
+          } else {
+            await message.channel.send(makeMessage({
+              text: `Je n'ai pas été capable de trouver une expression à évaluer, désolé :(`,
+            }));
+          }
+          break;
         default:
           await message.channel.send("Je ne peux pas encore répondre à cela, mais c'est prévu !");
       }
