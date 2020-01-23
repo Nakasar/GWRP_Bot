@@ -126,6 +126,10 @@ async function handleMessage(message, bot) {
             }
           }
           break;
+        case 'how-to-improve':
+          await message.channel.send(`<@${message.author.id}> tu peux envoyer un chèque à mon maître, Nakasar, il en fera bon usage !`);
+
+          break;
         case 'need':
           await message.channel.send('Mais bien sûr, voici !');
 
