@@ -9,6 +9,6 @@
     "discord.js": "^11.2.1",
     "enmap": "^0.4.2",
     "enmap-level": "^1.0.0",
-    "mathjs": "^3.17.0"
+    "mathjs": "^7.5.1"
   }
 }
